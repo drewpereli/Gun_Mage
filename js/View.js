@@ -2118,6 +2118,9 @@ View.prototype.initializeGameView = function(){
 
 	//Initialize alert div
 	this.initializeAlertDiv();
+
+	//Initalize opions menu
+	this.initializeOptionsMenu();
 	
 
 	//Initialize the depth and orb info
@@ -2197,6 +2200,15 @@ View.prototype.initializeGameView = function(){
 
 	tM.style.visibility = 'hidden';
 	this.set();
+}
+
+
+
+
+View.prototype.initializeOptionsMenu = function()
+{
+	var oM = document.createElement('div');
+	document.body.appendChild(oM);
 }
 
 
