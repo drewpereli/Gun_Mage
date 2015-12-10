@@ -1808,6 +1808,7 @@ Tile.prototype.getAngleFromTile = function(tile)
 }
 
 
+//Gets the angle of of the line betwen tile and (x, y) relative to a horizontal line
 Tile.prototype.getAngle = function(x, y)
 {
 	var xDiff = x - this.x;
