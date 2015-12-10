@@ -1,0 +1,113 @@
+
+ENEMIES
+
+Zombie: No equipment, hand to hand only. Doesn't even pathfind towards the player, just moves in their general direction. 
+
+Dungeon wolf: Doesn't stray far from the pack (average position of the pack members). Melee only. 
+
+Security Drone: Some kind of weapon. Armor. Slowly pathfinds it's way towards you. 
+
+Flamer: Pathfinds. Lights you on fire. 
+
+Berserker: Resistant to panick/aliance. Very agressive. 
+
+Undead soldier: Shoots at you, no pathfinding. 
+
+Turrett: Can't move, shoots at you. Armor.
+
+Harpy: Attacks you then backs off, attacks again. good at doging. 
+
+Timid soldier: Shoots you, runs if you get too close. 
+
+Stalker: Follows you around at a safe distance. After a certain amount of time, goes beserk and attacks you.
+
+Ogre: Eats friendlies to gain health if it gets low enough health. Mele only. Powerful but slow.
+
+Spider bot: Quick. Ranged attack. Moves a bit erratically sometimes (sometimes it just moves randomly).
+
+Blinker: Teleports around, shoots you. 
+
+Conjurer: Conjurs other creatures 
+
+Symbiote: Fights better when surrounded by other symbiotes
+
+Somethingsomething: Fights better as its health gets lower. Moves faster as it gets closer to you. 
+
+Poison thing: Always damages you for 50% of your current health rounded up. Can't actually kill you.
+
+Scarab: Walkws towards you, explodes when it gets damaged or when it attacks. 
+
+Blinder: Attacks you from a range. Reduces your vision range 
+
+Slower: Slows you down.
+
+
+
+
+
+
+
+BOSSES -- Need to kill these creatures to descend further
+
+1. Quick runner and gunner.
+
+2. Conjurer that conjures lots of little annoying creatures
+
+3. Giant slow tough creature. 
+
+4. Blinker that constantly blinks around erratically, sometimes runs away but turns around and shoots you.
+
+
+
+
+
+
+
+
+
+DEFAULT ENEMY AI
+
+if (sleeping)
+	listen and wake up if heard loud noise
+else
+	if (can see hostile)
+		behavior = hostile
+		if (can attack hostile)
+			attack hostile
+		else
+			move towards nearest hostile
+	else 
+		if (hostile)
+		{
+			behavior = curious;
+		}
+		listen and set "last heard noise" if heard loud noise
+		if (heard loud noise)
+			behavior = curious //Sets curious counter to 0
+			if (close to noise)
+				move randomly
+			else
+				move towards noise
+		else
+			if (curious)
+				time spent curious ++
+				//We know 'last heard noise' is set because otherwise we wouldn't be curious
+				if (close to noise)
+					move randomly
+				else
+					move towards noise
+				if (time spent curious >= minimum time spent curious)
+					if (random number < chance to wander when curious)
+						behavior = wandering
+			else //If wandering
+				move randomly
+				if (random number < chance to sleep when wandering)
+					behavior = sleeping
+
+
+
+
+
+
+
+5. Timid boss that avoids you until it gets bellow 25% health, then relentlessly attacks you.

@@ -1,0 +1,18 @@
+Current enemies implemented are:
+
+
+Zombie
+
+Scarab
+
+Undead Soldier
+
+Hive
+
+Security Drone
+
+Lumen Droid
+
+Spider Mother
+
+Spider

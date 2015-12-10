@@ -1,0 +1,76 @@
+			Zombie AI
+	-----------------------------------------
+	if (sleeping)
+	{
+		listen();
+	}
+	else if (wandering)
+	{
+		listen();
+		if (canSeePlayer)
+		{
+			changeState('hostile')
+			if (canAttackPlayer)
+			{
+				attackPlayer
+			}
+			else
+			{
+				moveTowardsPlayer
+			}
+		}
+		else if (heardPlayer)
+		{
+			changeState('hostile')
+			if (withinNoiseArea)
+			{
+				moveRandomlyWithinNoiseArea
+			}
+			else
+			{
+				moveTowardsWhereWeLastHeardThePlayer (pathfind)
+			}
+		}
+		else
+		{
+			moveRandomly
+			if (random < chanceToSleep)
+			{
+				changeState('sleep')
+			}
+		}
+	}
+	else if (hostile)
+	{
+		timeSpendHostile++;
+		listen();
+		if (canSeePlayer)
+		{
+			if (canAttackPlayer)
+			{
+				attackPlayer
+			}
+			else
+			{
+				moveTowardsPlayer
+			}
+		}
+		else //If it's hostile, it heard the player recently
+		{
+			if (withinNoiseArea)
+			{
+				moveRandomlyWithinNoiseArea
+			}
+			else
+			{
+				moveTowardsPlayer (pathfind)
+			}
+			if (timeSpendHostile >= minTimeSpendHostile)
+			{
+				if (randomNumber < chanceToWander)
+				{
+					changeState('wandering')
+				}
+			}
+		}
+	}

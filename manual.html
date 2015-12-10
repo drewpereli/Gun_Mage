@@ -1,0 +1,132 @@
+
+<html>
+
+<head>
+<style>
+	body
+	{
+		background-color: darkolivegreen;
+		padding: 10px;
+		font-family: monospace;
+		font-size: 13pt;
+	}
+
+	h1{
+		text-align: center;
+	}
+
+	li
+	{
+		margin: 7px;
+	}
+
+	.controlKey
+	{
+		background-color: gray;
+		border: 1px solid black;
+		padding: 2px;
+	}
+</style>
+</head>
+
+<body>
+
+<h1>H@CK N SLASH</h1>
+<h3>Table of Contents</h3>
+<ol>
+	<li>
+		<a href="#introduction">Introduction</a>
+	</li>
+	<li>
+		<a href="#controls">Controls</a>
+	</li>
+	<li>
+		<a href="#gameConcepts">Game Concepts</a>
+		<ul>
+			<li>
+				<a href="#objective">Objective</a>
+			</li>
+			<li>
+				<a href="#noise">Noise</a>
+			</li>
+			<li>
+				<a href="#lighting">Lighting</a>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a href="#interface">Interface</a>
+	</li>
+	<li>
+		<a href="#character">Character</a>
+	</li>
+	<li>
+		<a href="#items">Items</a>
+		<ul>
+			<li>
+				<a href="#weapons">Weapons</a>
+			</li>
+			<li>
+				<a href="#armor">Armor</a>
+			</li>
+			<li>
+				<a href="#helmets">Helmets</a>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a href="#enemies">Enemis</a>
+	</li>
+	<li>
+		<a href="#victory">Victory</a>
+	</li>
+	
+</ol>
+
+<hr />
+<hr />
+
+<article id="introduction">
+	<h2>Introduction</h2>
+	<p> Welcome to H@ck N Slash! It's a roguelike. Hopefully this shit makes sense to you, dumbass.</p>
+</article>
+<hr/>
+
+<article id="controls">
+	<h2>Controls</h2>
+	<ul>
+		<li>Open the manual with <span class="controlKey">?</span>.</li>
+		<li>Move around with the <span class="controlKey">arrow keys</span>.</li>
+		<li>Turn your character without moving with <span class="controlKey">alt + arrow keys</span>.</li>
+		<li>Shift your character without turning with <span class="controlKey">shift + arrow keys</span>.</li>
+		<li>Wait one turn with <span class="controlKey">.</span> or <span class="controlKey">space bar</span>.</li>
+		<li>Attack with <span class="controlKey">a</span>.</li>
+		<li>Reload with <span class="controlKey">r</span>.</li>
+		<li>Pick up an item with <span class="controlKey">g</span>.</li>
+		<li>Examine your surroundings with <span class="controlKey">x</span>.</li>
+		<li>Open the character menu with <span class="controlKey">m</span>.</li>
+		<li>Open the powers menu with <span class="controlKey">p</span>.</li>
+		<li>Open the equpiment menu with <span class="controlKey">e</span>.</li>
+		<li>Select an item in the equipment menu, then equip or unequip it with <span class="controlKey">e</span>.</li>
+		<li>Close any menu with <span class="controlKey">esc</span>.</li>
+	</ul>
+</article>
+<hr/>
+
+<article id="gameConcepts">
+	<h2>Game Concepts</h2>
+	<h3 id="objective">Objective</h3>
+	<p>You've been trapped on the top floor of a tower. You're objective is to escape.</p>
+	<h3 id="noise">Noise</h3>
+	<p>Moving and attacking create noise. The amount of noise these actions make changes depending on your equipment and your stats. You can see how much noise each action makes in the character menu or in the character information box at the top right.</p>
+	<p>When you make a noise, the noise is propgated from adjacent tile to adjacent tile. The noise is reduced by 1 for each tile it had to travel through to get there, and it keeps propogating until it gets to 0. Noise cannot travel through wals.</p>
+	<p>Noise can wake up enemies, and alert woken enemies of your presence. I'll outline the way this works bellow.</p>
+	<p>Say you fire your weapon, which causes a noise of 100 volume. That noise propogates throughout the dungeon. Let's say there is a sleeping enemy is 40 tiles away. By the time the noise reaches that enemy, it will only be 60 volume. What this means is that the noise has a 60% chance to wake that enemy up.</p>
+	<h3 id="lighting">Lighting</h3>
+	<p>Each tile has a certain amount of lighting. There are three posibilities: dark, medium, and bright. The lighting of a tile effects how visible you are to enemies when you're occupying it. If the tile is dark, the chance of an enemy seeing you is equal to your visibility. If it's medium, the chance of an enemy seeing you is double your visibility. If it's bright, the chance of an enemy seeing you is triple your visibility.</p>
+</article>
+
+
+</body>
+
+</html>

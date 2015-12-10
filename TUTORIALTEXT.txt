@@ -1,0 +1,18 @@
+
+Use the arrow keys to move.
+
+Hit d to see what direction you’re facing. 
+
+Hit d again to go back to normal.
+
+Hold shift and press the arrow keys to move without changing directions. Moving this way takes twice as long, unless you’re moving forward which is treated the same as moving normally.
+
+Hold alt and press the arrow keys to change direction without moving. Turning 90&deg; takes half of your move time. Turning 18-&deg; takes the same as your move time.
+
+To move to a tile you’re not facing, you’ll automatically turn then move. The turn takes time. So if you’re facing north and you move north, that will take your move time. If you’re facing north and you move east, that will take 1.5 x your move time. If you’re facing north and you move south, that will take 2 x your move time.
+
+Hit x to go into examine mode. Use the arrow keys to move the reticule around. No time will elapse when you’re in examine mode. Press escape to go back to normal mode.
+
+You found an orb! Orbs are how you level up your character. There is one on each level. You probably want to try and find it before descending to the next level, because there’s no going back up.<br/><br/>Orbs give you two skill points and one power point. Power points will be covered later in this tutorial. Skill points let you raise one of your four core attributes: strength, dexterity, intelligence, and perception.<br/><br/>Press c to go into the character menu. Use the arrow keys to highlight any of the many stats you see for more information. If you have one of the four core attributes selected, press enter to raise it’s value by 1, but only if you have skill points left. You can see how many skill points you have left in the top right corner of the menu. 
+
+Down this next hallway you’ll see a <. This symbol represent a staircase. Simply move onto the staircase to descend to a new level. But be aware, you can’t return once you’ve gone down! 

@@ -1,0 +1,179 @@
+POWERS
+
+
+
+Active Powers
+
+
+General Upgarde ideas for all powers: reduced noise, reduced time to cast, reduced power consumption, increased cast distance
+
+
+
+1. BLINK: Blink a certain distance
+	STABLE BLINK: Blink to within 1 tile of selected Tile
+	PERCISE BLINK: Blink to the selected tile
+
+
+2. Camera drone that you can throw a certain distance to increase your vision. It could last as long as you don't throw another one or change the dungeon level
+	Upgrades: increased throw range, increased view range, 
+
+
+3. Combat turret that stays in place and shoots at enemies. Could also block their path. Lasts a limited time.
+	Upgardes: turret shots are silent, turret lasts longer, more health/damage/range/accuracy etc., smarter AI (starts out shooting random enemy, 	       	upgarded turret will shoot enemy that it can damage the most or something), 
+
+
+4. SPIN: Turn a unit in a random other direction
+	Upgrade: Turn so the unit's back is facing the player
+	Upgrade: All units the player can see face away from the player
+
+
+5. CLOAK. Could either be a thing that stays on and drains energy, or something you activate that lasts for a certain amount of time
+	Upgrade: Reduced visibility ==> totally invisible. Increase invisibility time/energy consumption.
+
+
+6. Move silently. Also could either be toggle or activate.
+	Upgrade: Same ias invisible power. 
+
+
+7. Put monster back to sleep.
+	Upgrade: Make it so no matter how much noise you make, they won't wake up for a certain number of turns
+
+
+8. Make monster flee.
+	Upgrade: Increased time fleeing.
+
+
+9. Make monster go berserk and attack everything.
+	Upgrade: Make them only attack other monsters, not you or allies.
+
+
+10. Berserk mode: Do more damage/move faster/increased accuracy. Maybe take more damage too, make more noise, etc. OR, you automatically attack the closest thing to you. 
+	Upgrade: Negative effects reduced. Lasts longer. More potent.
+
+
+11. Imbue weapon with status effect.
+	Upgrade: Lasts longer. 
+
+
+12. MOVEMENT TRACKER (ON/OFF): Increase accuracy/damage of your shots. Toggle on-off.
+	Upgrades: use less energy. Increase accuracy.
+
+
+13. Increase view distance/view angle. (Like invisibility, could be toggle or duration).
+
+
+14. Increased damage reduction but reduced move speed
+	Upgrade: negative effects decrease. Gets to the point of temporary invincibility. 
+
+
+15. Heal
+
+
+16. Force push all surrounding enemies back a certain distance
+	Upgrade: Add damage, increaesd distance
+
+
+17. Target push a single enemy back a certain distance
+	Upgrade: Add damage, increaesd distance
+
+
+18. Pull enemy in. 
+
+
+19. Damaging aura the hurts enemies withing a certain range. (toggle or duration)
+
+
+20. Create wall.
+
+
+21. Destroy wall.
+
+
+22. Set trap.
+
+
+23. SLOW TIME. 
+	Upgrade: Gets to the point of effectively stopping time. 
+
+
+24. Slow enemy.
+	Upgrade: Gets to the point of freezing enemy. 
+
+
+25. Power for each status effect
+	Upgrade: Area of effect, such as a bomb or a cone. 
+
+
+26. Darken an area for a certain amount of time. 
+
+
+27. Disable a light source. 
+
+
+28. Destroy enemy equipment
+	Upgrade: Steal the equipment
+
+
+29. Generate ammo.
+	Upgrades: Instantly reloads weapon as well. 
+
+
+30. Black hole that sucks enemies in dependent on their strength. Either dmaages them or just keeps them from moving.
+	Upgrade: Gravity increase. 
+
+
+31. Track enemies that you've seen before even when they leave your line of sight. 
+	Upgrade: Track any enemy that comes close enough to you even if you haven't seen them. ==> Track all enemies as soon as you enter the level. 
+
+
+32. Move through walls
+
+
+33. Stairs down is automatically revelaed when you enter the level
+	Upgrades: For each new tile you see, a random tile gets the "seenByPlayer" attribute set to true. 
+
+
+35. Reflect damage
+
+
+36. Doing or receiving damage recharges energy/health.
+
+
+37. ADRENALINE METER.
+	Upgrade: Only have to be surrounded on three sides. Then two sides. 
+
+
+38. Convert health to energy.
+
+
+39. Switch places with enemy. 
+
+
+40. Place time bomb. Make enemy into time bomb, explodes and damages other enemies. 
+
+
+41. Bottom half of your clip does extra damage
+
+
+42. Instant reload
+
+
+43. Do more damage if you have fewer enemies in sight
+
+
+44. Make a wall a grenade. Wall disappears and hurts adjacent units.
+
+
+45. Harvest a wall for health/energy
+
+
+46. CONJURE ZOMBIE: Summons a zombie ally for 100 turns max.
+	Upgrades: Conjure 2 zombies ==> Zombie has double health and double life span. ==> Zombies heal and have no lifespan 
+
+
+47. FOCUS: Do more damage/better accuracy when bellow 50%.
+
+
+
+
+

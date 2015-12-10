@@ -1,0 +1,49 @@
+ITEMS
+
+Guns
+
+--Shotguns: Short distance, height damage, small clip, loud. Heavy
+
+--Rifle: Long distance. High reload rate, loud. Heavy
+
+--Pistol: Short distance, short damage, quiet, fast reload. Light
+
+--Machine Gun: Medium distance, low accuracy, fast fire rate, large clip, slow reload, loud. Heavy.
+
+--Submachine gun: Like machine gun but shorter distance and quieter. Light
+
+--Sniper Rifle: Long range, slow reload, slow fire time, loud. Light and heavy.
+
+--Crossbow: Medium range, small clip, very quiet. Light.
+
+--Knife: Low damage but fast. Quiet. Light.
+
+--Club: High damage but slow. Loud. Heavy.
+
+--Sword: Medium damage, medium speed, medium noise. Light and heavy.
+
+
+Possible weapon effects (besides status effects)
+-- Pushback
+-- Damages enemies next to targeted enemy
+-- Damages enemies in front of / behind targeted enemy.
+-- Ignores a certain amount of armor.
+-- Changes enemy direction
+-- Tunneling 
+
+
+Possible wayts to get stats for guns
+-- Chance to hit = a + b * perception
+-- Damage = a + b * strength OR a + b * dexterity OR whichever is lesser/greater, etc. 
+-- Range = a + b * perception
+-- Noise = a - b * (perception + dex)
+-- Reload time, fire time, const. 
+
+
+
+LIMBS
+
+Potential ways to get stats
+--Armor = a + b * Strength
+--Speed = a + b * Dexterity
+-- Movetime = a - b * dex. (Legs only)

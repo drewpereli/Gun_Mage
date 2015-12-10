@@ -1,0 +1,34 @@
+TO DO
+
+
+--Implement lighting and visibility. DONE!
+
+
+-- Implement armor and helmets. DONE!
+
+
+-- Implement spread on weapons.
+
+
+-- Implement knockback on weapons
+
+
+-- Implement powers
+
+
+-- Implement all other enemies
+
+
+-- Implement stairs up and down so new dungeons become generated
+
+
+-- Add div to display the controls
+
+
+-- Add classes and races
+
+
+-- Implement status effects to weapons
+
+
+-- Implement tutorial? 
