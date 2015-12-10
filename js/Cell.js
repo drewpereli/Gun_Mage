@@ -13,7 +13,7 @@ function Cell(x, y){
 	}
 
 	this.lavaSquareLength = 5;
-	this.lastLavaColors = [];
+	
 }
 
 
@@ -64,7 +64,8 @@ Cell.prototype.fillLava = function()
 	var squareLength = this.lavaSquareLength;
 	var ctx = this.ctxs.terrain;
 
-	this.lastLavaColors = [];
+	var tile = g.view.getTileFromCell(this);
+	tile.lastLavaColors = [];
 	for (var xPx = this.xPx ; xPx <= this.xPx + this.cellLength - squareLength ; xPx += squareLength)
 	{
 		var currLastColors = [];
@@ -75,7 +76,7 @@ Cell.prototype.fillLava = function()
 			ctx.fillRect(xPx, yPx, squareLength, squareLength);
 			currLastColors.push(color);
 		}
-		this.lastLavaColors.push(currLastColors);
+		tile.lastLavaColors.push(currLastColors);
 	}
 }
 
@@ -84,6 +85,7 @@ Cell.prototype.fillLavaLastSeen = function()
 {
 	var squareLength = this.lavaSquareLength;
 	var ctx = this.ctxs.terrain;
+	var tile = g.view.getTileFromCell(this);
 
 	var x = 0;
 	for (var xPx = this.xPx ; xPx <= this.xPx + this.cellLength - squareLength ; xPx += squareLength)
@@ -91,7 +93,7 @@ Cell.prototype.fillLavaLastSeen = function()
 		var y = 0;
 		for (var yPx = this.yPx ; yPx <= this.yPx + this.cellLength - squareLength ; yPx += squareLength)
 		{
-			var color = this.lastLavaColors[x][y];
+			var color = tile.lastLavaColors[x][y];
 			ctx.fillStyle = color;
 			ctx.fillRect(xPx, yPx, squareLength, squareLength);
 			y++;

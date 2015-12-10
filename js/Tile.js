@@ -30,6 +30,8 @@ function Tile(x, y){
 	this.filled = false; //Only used when floodfilling during map generation.
 	this.pathFound = false;//Used for pathfinding
 	this.pathDistance = false;//Used for pathfinding
+
+	this.lastLavaColors = [];
 }
 
 
