@@ -1941,7 +1941,8 @@ View.prototype.initializeMainMenu = function()
 	//Print the title
 	var title = document.createElement('h1');
 	title.innerHTML = "DREW'S GAME";
-	title.innerHTML = title.innerHTML.replace("GAME", "<strike>GAME</strike>") + " CENSORSHIP";
+	title.innerHTML = title.innerHTML.replace("GAME", "<strike>GAME</strike>") + " CENSORSHIP!";
+	title.style.color = 'gold';
 	title.style.fontSize = '50pt';
 	title.style.color = g.COLORCONSTANTS.GREEN;
 	title.style.width = menuWidth + 'px';
