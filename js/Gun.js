@@ -165,7 +165,7 @@ function Pistol()
 	this.armorPiercing = 0;
 	this.spreadAngle = 0;
 	this.followThrough = 0;
-	this.knockBack = 0;
+	this.knockBack = 3;
 
 	/*
 	this.shootSound = document.createElement('audio');

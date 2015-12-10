@@ -453,6 +453,11 @@ Unit.prototype.die = function()
 //Knocks back 'unit' by 1 relative to this
 Unit.prototype.knockBackUnit = function(unit)
 {
+	//If the unit was knockedback into laval, it'll be dead!!!
+	if (unit.dead)
+	{
+		return false;
+	}
 	//Get the farthest sibling tile(s) of unit.tile from this
 	var maxDistance = 0;
 	var maxDistanceIndeces = [];
