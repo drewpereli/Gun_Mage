@@ -55,6 +55,31 @@ Cell.prototype.strokeThickRect = function(color, ctxName)
 
 
 
+//Experimental cool looking lava
+Cell.prototype.fillLava = function()
+{
+	var squareLength = 5;
+	var ctx = this.ctxs.terrain;
+	var done = false;
+
+	for (var xPx = this.xPx ; xPx <= this.xPx + this.cellLength - squareLength ; xPx += squareLength)
+	{
+		for (var yPx = this.yPx ; yPx <= this.yPx + this.cellLength - squareLength ; yPx += squareLength)
+		{
+			var color = 'rgb(' +  g.rand.nextInt(200, 256) + ', 50, 0)';
+			ctx.fillStyle = color;
+			ctx.fillRect(xPx, yPx, squareLength, squareLength);
+		}
+	}
+
+	/*
+	ctx.fillStyle = 'blue';
+	ctx.fillRect(this.xPx, this.yPx, this.cellLength, this.cellLength);
+	*/
+}
+
+
+
 Cell.prototype.clearRect = function(ctxName)
 {
 	var ctx = this.ctxs[ctxName];

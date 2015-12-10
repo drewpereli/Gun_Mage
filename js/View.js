@@ -527,7 +527,7 @@ View.prototype.setCell = function(cell)
 		}
 		else if (tile.terrain === 'LAVA')
 		{
-			cell.fillRect(g.colors.LAVA, 'terrain');
+			cell.fillLava();
 		}
 
 
@@ -721,6 +721,7 @@ View.prototype.setCell = function(cell)
 		else
 		{
 			cell.fillRect(g.COLORCONSTANTS.BLACK, 'seen');
+
 
 		}
 		//Use the "seen" context
