@@ -1,3 +1,3 @@
 # game
 
-This is my game!
+This is our game!
