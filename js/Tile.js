@@ -4,15 +4,16 @@ function Tile(x, y){
 	this.y = y;
 	this.siblings = [false, false, false, false]; //Up, right, down, left. Will be set later
 	this.terrain = "WALL";
-	this.destructable = true;
 	this.unit = false;
 	this.item = false;
 	this.spawnPoint = false; //Set to true if this is where the player is going to spawn
 	this.message = false;
 
+	this.destructable = true;
 	this.blocksVision = true;
 	this.blocksMovement = true;
 	this.blocksNoise = true;
+	this.forbidsMovement = true;//A lava tile for example won't block movement, but it will forbid it so the player/enemies can't walk into it.
 
 	this.light = "DARK"; //Dark, medium, bright
 	this.isLightSource = false;
@@ -180,6 +181,7 @@ Tile.prototype.setTerrain = function(terrain){
 		this.blocksMovement = false;
 		this.blocksVision = false;
 		this.blocksNoise = false;
+		this.forbidsMovement = false;
 	}
 	else if (terrain === "WALL")
 	{
@@ -187,6 +189,7 @@ Tile.prototype.setTerrain = function(terrain){
 		this.blocksVision = true;
 		this.blocksMovement = true;
 		this.blocksNoise = true;
+		this.forbidsMovement = true;
 	}
 	else if (terrain === "STAIRSUP")
 	{
@@ -194,6 +197,7 @@ Tile.prototype.setTerrain = function(terrain){
 		this.blocksMovement = false;
 		this.blocksVision = true;
 		this.blocksNoise = false;
+		this.forbidsMovement = false;
 	}
 	else if (terrain === "STAIRSDOWN")
 	{
@@ -201,6 +205,7 @@ Tile.prototype.setTerrain = function(terrain){
 		this.blocksMovement = false;
 		this.blocksVision = true;
 		this.blocksNoise = false;
+		this.forbidsMovement = false;
 	}
 	else if (terrain === "SPAWNPOINT")
 	{
@@ -213,10 +218,20 @@ Tile.prototype.setTerrain = function(terrain){
 		this.blocksMovement = false;
 		this.blocksVision = false;
 		this.blocksNoise = false;
+		this.forbidsMovement = false;
 	}
 	else if (terrain === 'INDESTRUCTIBLEWALL')
 	{
 		this.destructable = false;
+	}
+	else if (terrain === 'LAVA')
+	{
+		this.terrain = 'LAVA';
+		this.blocksMovement = false;
+		this.blocksVision = false;
+		this.blocksNoise = false;
+		this.forbidsMovement = true;
+
 	}
 }
 

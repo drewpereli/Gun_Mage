@@ -553,7 +553,7 @@ g.powers.conjureZombie = {
 			numberOfZombies = 1;
 		}
 
-		var spawnPoints = potentialSpawnPoints.getRandomElements(numberOfZombies);
+		var spawnPoints = getRandomElements(potentialSpawnPoints, numberOfZombies);
 
 		for (var i = 0 ; i < spawnPoints.length ; i++)
 		{

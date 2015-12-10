@@ -525,6 +525,10 @@ View.prototype.setCell = function(cell)
 			cell.strokeRect(g.colors.border, 'terrain');
 			cell.fillText(g.chars.ORB, g.COLORCONSTANTS.YELLOW, 'terrain');
 		}
+		else if (tile.terrain === 'LAVA')
+		{
+			cell.fillRect(g.colors.LAVA, 'terrain');
+		}
 
 
 		//Items

@@ -1140,12 +1140,22 @@ Game.prototype.changePlayerStance = function()
 
 
 //Moves the unit to the given tile. Doesn't take any time
+//Used for knocking back and shit
 Game.prototype.transportUnit = function(unit, tile)
 {
 	unit.tile.setUnit(false);
 	tile.setUnit(unit);
 	unit.tile = tile;
+
+	//If it's a lava tile, kill the unit HAHAHA
+	if (tile.terrain === 'LAVA')
+	{
+		unit.die();
+		return;
+	}
+
 	unit.setVisibleTiles();
+
 
 	if (unit.enemyType === 'LUMENDROID')
 	{

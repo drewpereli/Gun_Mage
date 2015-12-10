@@ -2262,7 +2262,7 @@ Unit.prototype.getTileOnPathToIgnoreUnits = function(target)
 	}
 	if (this.tile.siblings.indexOf(target) !== -1) //If the target is right next to this unit
 	{
-		if (target.blocksMovement && target.unit === false)//Return false if it blocks movement for a reason other than being occupied
+		if ((target.blocksMovement || target.forbidsMovement) && target.unit === false)//Return false if it blocks movement for a reason other than being occupied
 		{
 			return false;
 		}
@@ -2294,7 +2294,7 @@ Unit.prototype.getTileOnPathToIgnoreUnits = function(target)
 				continue;
 			}
 			
-			if (sib.blocksMovement && sib.unit === false)
+			if ((sib.blocksMovement || sib.forbidsMovement) && sib.unit === false)
 			{
 				continue;
 			}
@@ -2375,7 +2375,7 @@ Unit.prototype.getTileOnPathTo = function(target)
 	}
 	if (this.tile.siblings.indexOf(target) !== -1) //If the target is right next to this unit
 	{
-		if (target.blocksMovement)//Return false if it blocks movement
+		if (target.blocksMovement || target.forbidsMovement)//Return false if it blocks movement
 		{
 			return false;
 		}
@@ -2420,7 +2420,7 @@ Unit.prototype.getTileOnPathTo = function(target)
 				continue;
 			}
 			
-			if (sib.blocksMovement)
+			if (sib.blocksMovement || sib.forbidsMovement)
 			{
 				continue;
 			}

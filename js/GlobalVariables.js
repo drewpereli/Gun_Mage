@@ -72,6 +72,7 @@ function GlobalVariables(){
 	this.chars = {
 		WALL: '#',
 		OPEN: ' ',
+		LAVA: '~',
 		STAIRSUP: '<',
 		STAIRSDOWN: '>',
 		ORB: '\u25CF',
@@ -236,34 +237,8 @@ GlobalVariables.prototype.initialize = function()
 		console.log(g.game.ticks + ': ' + string);
 	}
 
-	Array.prototype.getRandomElement = function()
-	{
-		var index = g.rand.nextInt(0, this.length);
-		return this[index];
-	}
 
-	Array.prototype.getRandomElements = function(number)
-	{
-		var tempArray = [];
-		for (var i = 0 ; i < this.length ; i++)
-		{
-			tempArray.push(this[i]);
-		}
-		var returnArray = [];
-
-		for (var i = 0 ; i < number ; i++)
-		{
-			if (tempArray.length === 0)
-			{
-				break;
-			}
-			var randIndex = g.rand.nextInt(0, tempArray.length);
-			returnArray.push(tempArray[randIndex]);
-			tempArray.splice(randIndex, 1);
-		}
-
-		return returnArray;
-	}
+	
 	/*
 	var sound = document.createElement("audio");
 	sound.innerHTML = "<source src='sounds/PISTOL_SHOT.mp3' type='audio/mpeg' />";
@@ -275,6 +250,7 @@ GlobalVariables.prototype.initialize = function()
 	this.colors = {
 		WALL: this.COLORCONSTANTS.DARKGRAY,
 		OPEN: this.COLORCONSTANTS.LIGHTGRAY,
+		LAVA: this.COLORCONSTANTS.ORANGE,
 		INDESTRUCTABLE: this.COLORCONSTANTS.DEEPRED,
 		STAIRS: this.COLORCONSTANTS.WHITE,
 		MESSAGETILE: this.COLORCONSTANTS.LIGHTBLUE,

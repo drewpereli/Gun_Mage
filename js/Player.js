@@ -67,7 +67,7 @@ Player.prototype.move = function(directionIndex)
 	{
 		canMoveTo = false;
 	}
-	else if (movingTo.blocksMovement && movingTo.unit.alignment !== "ALLY") //If the tile blocks movement and it's not an ally tile
+	else if ((movingTo.blocksMovement || movingTo.forbidsMovement)&& movingTo.unit.alignment !== "ALLY") //If the tile blocks movement and it's not an ally tile
 	{
 		canMoveTo = false;
 	}
@@ -311,10 +311,6 @@ Player.prototype.attack = function()
 
 	for (pName in this.powers)
 	{
-		if (pName === 'getRandomElement' || pName === 'getRandomElements')
-		{
-			continue;
-		}
 		var power = this.powers[pName];
 		if (power.atts.powerType === "SUSTAINED" && power.atts.drainsDuring.indexOf("ATTACK") !== -1) //If it's an on off power, and it drains energy during each time unit
 		{

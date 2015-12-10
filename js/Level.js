@@ -53,8 +53,8 @@ Level.prototype.setNumberOfEnemies = function()
 	}
 	if (this.currentDepth === 1)
 	{
-		this.numberOfEnemies = 1;
-		return 1;
+		this.numberOfEnemies = 0;
+		return;
 	}
 	var multiplier = this.currentDepth + g.rand.next(1, (this.currentDepth + 2) / 2);
 	var numberOfEnemies = Math.pow(multiplier, 1.5);
@@ -580,70 +580,6 @@ Level.prototype.generate = function()
 		return false;
 	}
 
-	
-	//Set the room center connections
-	/*
-	var connectionsPerRoom = 3;
-	var roomCenterConnections = [];
-	for (var i = 0 ; i < roomCenters.length ; i++)
-	{
-		var center = roomCenters[i];
-
-		var minDistances = [];
-		//Fill min distances
-		for (var j = 0 ; j < connectionsPerRoom ; j++)
-		{
-			minDistances.push(999999999);
-		} 
-
-		var minDistanceCentersIndeces = [-1, -1, -1];
-		//Get the actual min distances
-		for (var j = 0 ; j < roomCenters.length ; j++)
-		{
-			if (j === i) //If we'd be looking at the same center
-			{
-				continue;
-			}
-			var otherCenter = roomCenters[j];
-			currDistance = getDistance(center.x, center.y, otherCenter.x, otherCenter.y);
-
-			//Get the longest current distance
-			var largestDistance = 9999999999;
-			var largestDistanceIndex;
-			for (var k = 0 ; k < minDistances.length ; k++)
-			{
-				currMinDistance = minDistances[k];
-				if (currMinDistance < largestDistance)
-				{
-					largestDistance = currMinDistance;
-					largestDistanceIndex = k;
-				}
-			}
-
-			//If currDistance is less than longestDistance, replace longest distance with curr distnace
-			console.log(currDistance + ', ' + largestDistance)
-			if (currDistance > largestDistance)
-			{
-				minDistances[largestDistanceIndex] = currDistance;
-				roomCenterConnections[i][largestDistanceIndex] = j;
-			}
-		}
-	}
-
-
-	//Connect all the room centers to their connectors 
-	for (var i = 0 ; i < roomCenters.length ; i++)
-	{
-		var center = roomCenters[i];
-		for (var j = 0 ; j < connectionsPerRoom ; j++)
-		{
-			console.log(roomCenterConnections[0]);
-			var connector = roomCenters[roomCenterConnections[i][j]];
-			this.connectPoints(center, connector);
-		}
-
-	}
-	*/
 
 	for (var i = 0 ; i < roomCenters.length ; i++)
 	{
@@ -704,6 +640,66 @@ Level.prototype.generate = function()
 	}
 
 	
+	//Use voronoi diagrams thing to set some of the cells to lava
+	//First, get 10 lava cells. Then get 10 wall cells
+	var walls = [];
+	var lavaTiles = [];
+	for (var i = 0 ; i < 10 ; i++)
+	{
+		var wall;
+		do
+		{
+			wall = this.getRandomWallTile();
+		}
+		while (walls.indexOf(wall) !== -1)
+
+		walls.push(wall);
+	}
+
+	for (var i = 0 ; i < 10 ; i++)
+	{
+		var lava;
+		do
+		{
+			lava = this.getRandomWallTile();
+		}
+		while (lavaTiles.indexOf(lava) !== -1 || walls.indexOf(lava) !== -1)
+
+		lavaTiles.push(lava);
+		lava.setTerrain('LAVA');
+	}
+
+	var vTiles = walls.concat(lavaTiles);
+	//Go through all the tiles. See which tile out of 
+	var allTiles = this.getTiles();
+	for (var i in allTiles)
+	{
+		var t = allTiles[i];
+		if (t.terrain !== 'WALL' || t.destructable === false)
+		{
+			continue;
+		}
+
+		//See which tile in vTiles it's closest to
+		var minDistance = 9999999999;
+		var minDistanceIndex;
+
+		for (var j in vTiles)
+		{
+			var vTile = vTiles[j];
+			var d = vTile.getDistance(t);
+			if (d < minDistance)
+			{
+				minDistance = d;
+				minDistanceIndex = j;
+			}
+		}
+
+		var closestVTile = vTiles[minDistanceIndex];
+		t.setTerrain(closestVTile.terrain);
+
+	}
+
 
 	return true;
 
@@ -1113,6 +1109,27 @@ Level.prototype.getRandomOpenTile = function()
 	return false;
 }
 
+
+
+
+Level.prototype.getRandomWallTile = function()
+{
+	var tiles = this.getTiles();
+	var startingInd = g.rand.nextInt(0, tiles.length);
+
+	for (var ind = startingInd ; ind < startingInd + tiles.length ; ind++)
+	{
+		var i = ind % tiles.length;
+		var tile = tiles[i];
+
+		if (tile.terrain === 'WALL')
+		{
+			return tile;
+		}
+	}
+
+	return false;
+}
 
 
 

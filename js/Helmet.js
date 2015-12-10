@@ -53,7 +53,7 @@ Helmet.prototype.initialize = function(tile)
 	if (rarity !== 'REGULAR')
 	{
 		var multiplier = g.itemBonusMultipliers[rarity];
-		var bonus = g.possibleHelmetBonuses.getRandomElement();
+		var bonus = getRandomElement(g.possibleHelmetBonuses);
 
 		this.name = this.name + ' of ' + rarity + ' ' + bonus;
 

@@ -48,7 +48,7 @@ Gun.prototype.initialize = function(tile)
 		var bonus;
 		do
 		{
-			bonus = g.possibleGunBonuses.getRandomElement();
+			bonus = getRandomElement(g.possibleGunBonuses);
 		}
 		while ((this.subtype === 'PISTOL' || this.subtype === 'ASSUALTRIFLE') && bonus === 'Quickness') //Don't want a pistol or assault rifle of quickness, because those are already quick weapons 
 		

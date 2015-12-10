@@ -36,7 +36,7 @@ MeleeWeapon.prototype.initialize = function(tile)
 		var bonus;
 		do
 		{
-			bonus = g.possibleMeleeWeaponBonuses.getRandomElement();
+			bonus = getRandomElement(g.possibleMeleeWeaponBonuses);
 		}
 		while ((this.subtype === 'SAMURAISWORD') && bonus === 'Quickness')
 
