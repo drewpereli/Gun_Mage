@@ -527,7 +527,17 @@ View.prototype.setCell = function(cell)
 		}
 		else if (tile.terrain === 'LAVA')
 		{
-			cell.fillLava();
+			if (g.game.player.canSee(tile))
+			{
+				cell.fillLava();
+			}
+			else
+			{
+				if (tile.seenByPlayer)
+				{
+					cell.fillLavaLastSeen();
+				}
+			}
 		}
 
 
@@ -593,31 +603,7 @@ View.prototype.setCell = function(cell)
 				cell.fillRect(g.colors.stealth, 'stealth');
 			}
 		}
-		/*
-		if (g.game.DEBUG.showEnemyVision)
-		{
-			ctx = this.canvases.general.getContext('2d');
-			//See if it's in the visible tiles array of any actor besides player
-			for (var actorIndex = 0 ; actorIndex < g.game.actors.length ; actorIndex++)
-			{
-				var actor = g.game.actors[actorIndex];
-				if (actor !== g.game.player)
-				{
-					if (actor.visibleTiles.indexOf(tile) !== -1)
-					{
-						cell.fillRect(g.COLORCONSTANTS.YELLOW, 'general');
-					}
-				}
-			}
-		}
-		if (g.game.DEBUG.showKnockBackPath)
-		{
-			if (this.TEST.indexOf(tile) !== -1)
-			{
-				cell.fillRect(g.COLORCONSTANTS.BLUE, 'general');
-			}
-		}
-		*/
+		
 
 
 
@@ -637,12 +623,7 @@ View.prototype.setCell = function(cell)
 				{
 					color = g.COLORCONSTANTS.YELLOW;
 				}
-				/*
-				else if (g.game.player.canShootTileAssumesInRange(tile) === false || g.game.player.visibleTiles.indexOf(tile) === -1)//Else if player can't see the tile/the gun can't shoot it from here, or the tile is out of the view range
-				{
-					color = g.colors.tilesBetweenInvisible;
-				}
-				*/
+				
 				else
 				{
 					
@@ -661,12 +642,7 @@ View.prototype.setCell = function(cell)
 				{
 					color = g.COLORCONSTANTS.YELLOW;
 				}
-				/*
-				else if (g.game.player.visibleTiles.indexOf(tile) === -1)//Else if player can't see the tile
-				{
-					color = g.colors.tilesBetweenInvisible;
-				}
-				*/
+				
 				else
 				{
 					color = g.COLORCONSTANTS.PURPLE;

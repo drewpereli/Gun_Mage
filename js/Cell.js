@@ -91,7 +91,6 @@ Cell.prototype.fillLavaLastSeen = function()
 		var y = 0;
 		for (var yPx = this.yPx ; yPx <= this.yPx + this.cellLength - squareLength ; yPx += squareLength)
 		{
-
 			var color = this.lastLavaColors[x][y];
 			ctx.fillStyle = color;
 			ctx.fillRect(xPx, yPx, squareLength, squareLength);
