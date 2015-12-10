@@ -93,6 +93,11 @@ Game.prototype.changeState = function(state)
 
 			this.selectedPower = false;
 		}
+		else if (this.state === 'OPTIONS')
+		{
+			g.view.closeOptionsMenu();
+			this.selectedMenuItem = false;
+		}
 		else if (this.state === 'MESSAGE')
 		{
 			g.view.eraseTutorialMessage();
@@ -165,6 +170,13 @@ Game.prototype.changeState = function(state)
 		this.selectedMenuItem = 'LABEL';
 		g.view.closeMenu();
 		g.view.openMenu();
+	}
+	else if (state === 'OPTIONS')
+	{
+		this.state = "OPTIONS";
+		this.selectedMenuItem = 0;
+		g.view.openOptionsMenu();
+		g.view.selectOption();
 	}
 	else if (state === "GAMEOVER")
 	{
@@ -608,7 +620,25 @@ Game.prototype.openManual = function()
 //Only for the menu that lets you quit, restart, etc.
 Game.prototype.moveOption = function(direction)
 {
+	
+	this.selectedMenuItem = this.selectedMenuItem === 0 ? 1 : 0;
+	g.view.selectOption();
+}
 
+Game.prototype.selectMenuOption = function()
+{
+	var s = this.selectedMenuItem;
+	if (s === 0)
+	{
+		this.changeState('DEFAULT');
+	}
+	else if (s === 1)
+	{
+		g.view.closeOptionsMenu();
+		this.player.die();
+		g.view.set();
+		this.changeState('GAMEOVER');
+	}
 }
 
 

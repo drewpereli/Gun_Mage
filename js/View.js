@@ -29,6 +29,13 @@ function View(width, height){
 	this.damageGraphicsOn = false; //Set to true when teh attack graphics activate. Keeps them from stepping over each other. 
 	this.explodedGraphicsOn = false; //Set to true when the exploded graphics activate. 
 
+
+	this.optionsMenu = false;
+	this.optionsMenuOptionDivs = {
+		resume: false,
+		quit: false,
+	}
+
 	this.canvases = {
 		terrain: document.createElement('canvas'),
 		items: document.createElement('canvas'),
@@ -748,6 +755,29 @@ View.prototype.clearCell = function(cell)
 	}
 }
 
+
+
+
+View.prototype.openOptionsMenu = function()
+{
+	this.optionsMenu.style.visibility = 'visible';
+}
+
+View.prototype.closeOptionsMenu = function()
+{
+	this.optionsMenu.style.visibility = 'hidden';
+}
+
+View.prototype.selectOption = function()
+{
+	var s = g.game.selectedMenuItem;
+	var divs = [this.optionsMenuOptionDivs.resume, this.optionsMenuOptionDivs.quit];
+	for (var i = 0 ; i < 2 ; i++)
+	{
+		if (i === s) divs[i].style.backgroundColor = g.COLORCONSTANTS.YELLOW;
+		else divs[i].style.backgroundColor = 'transparent';
+	}
+}
 
 
 //Opens the menu based on the games state
@@ -2209,6 +2239,35 @@ View.prototype.initializeOptionsMenu = function()
 {
 	var oM = document.createElement('div');
 	document.body.appendChild(oM);
+	oM.style.left = this.canvasStyle.left + 20 + 'px';
+	oM.style.top = '100px';
+	oM.style.width = this.canvasStyle.width - 40 + 'px';
+	oM.style.height = '150px';
+	oM.style.position = 'absolute';
+	oM.style.backgroundColor = g.COLORCONSTANTS.LIGHTBLUE;
+	oM.style.zIndex = 15;
+	oM.style.visibility = 'hidden';
+	oM.style.border = '3px solid ' + g.COLORCONSTANTS.PURPLE;
+	oM.style.borderRadius = '5px';
+	this.optionsMenu = oM;
+
+	for (var i = 0 ; i < 2 ; i++)
+	{
+		var option = document.createElement('div');
+		oM.appendChild(option);
+		//option.style.top = (100 + i * 40) + 'px';
+		option.style.height = '30px';
+		option.style.margin = '30';
+		option.style.textAlign = 'center';
+		option.style.color = g.COLORCONSTANTS.PURPLE;
+		option.style.fontSize = '16pt';
+
+		var innerHTML;
+		if (i === 0) {innerHTML = 'RESUME'; this.optionsMenuOptionDivs.resume = option;}
+		else {innerHTML = "DIE"; this.optionsMenuOptionDivs.quit = option;}
+
+		option.innerHTML = innerHTML;
+	}
 }
 
 
