@@ -11,6 +11,9 @@ function Cell(x, y){
 	this.ctxs = {
 		//This gets filled in 'initialize'
 	}
+
+	this.lavaSquareLength = 5;
+	this.lastLavaColors = [];
 }
 
 
@@ -58,24 +61,45 @@ Cell.prototype.strokeThickRect = function(color, ctxName)
 //Experimental cool looking lava
 Cell.prototype.fillLava = function()
 {
-	var squareLength = 5;
+	var squareLength = this.lavaSquareLength;
 	var ctx = this.ctxs.terrain;
-	var done = false;
 
+	this.lastLavaColors = [];
 	for (var xPx = this.xPx ; xPx <= this.xPx + this.cellLength - squareLength ; xPx += squareLength)
 	{
+		var currLastColors = [];
 		for (var yPx = this.yPx ; yPx <= this.yPx + this.cellLength - squareLength ; yPx += squareLength)
 		{
 			var color = 'rgb(' +  g.rand.nextInt(200, 256) + ', 50, 0)';
 			ctx.fillStyle = color;
 			ctx.fillRect(xPx, yPx, squareLength, squareLength);
+			currLastColors.push(color);
 		}
+		this.lastLavaColors.push(currLastColors);
+	}
+}
+
+
+Cell.prototype.fillLavaLastSeen = function()
+{
+	var squareLength = this.lavaSquareLength;
+	var ctx = this.ctxs.terrain;
+
+	var x = 0;
+	for (var xPx = this.xPx ; xPx <= this.xPx + this.cellLength - squareLength ; xPx += squareLength)
+	{
+		var y = 0;
+		for (var yPx = this.yPx ; yPx <= this.yPx + this.cellLength - squareLength ; yPx += squareLength)
+		{
+
+			var color = this.lastLavaColors[x][y];
+			ctx.fillStyle = color;
+			ctx.fillRect(xPx, yPx, squareLength, squareLength);
+			y++;
+		}
+		x++;
 	}
 
-	/*
-	ctx.fillStyle = 'blue';
-	ctx.fillRect(this.xPx, this.yPx, this.cellLength, this.cellLength);
-	*/
 }
 
 
