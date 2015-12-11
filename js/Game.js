@@ -16,7 +16,7 @@ function Game(){
 	this.selectedTile = false; //When examining or aiming, whate tile is selected
 	//this.tilesBetween = []; //Tiles in between selectedTile and player.tile. Used for aiming info and graphics
 
-	this.depth = 2; //How deep we are in the dungeon
+	this.depth = 1; //How deep we are in the dungeon
 	this.widthInit = 50; //Width of level 1. The levels will get bigger as we go
 	this.heightInit = 50; //Height of level 1
 	this.levelSizeGrowthRathe = 1.15;//How much bigger the width/height of each level is than the one before it.
