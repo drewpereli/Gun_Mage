@@ -224,16 +224,6 @@ Game.prototype.changeState = function(state)
 		this.state = 'CLASSMENU';
 		setView = false;
 	}
-	else if (state === 'TUTORIAL')
-	{
-		this.inTutorial = true;
-		g.view.clearDOM();
-		//this.state = 'TUTORIAL';
-		this.state = 'DEFAULT';
-		this.selectedMenuItem = false;
-		this.initialize();
-		g.view.initializeGameView();
-	}
 	else if (state === 'RESTING')
 	{
 		this.state = 'RESTING';
@@ -241,6 +231,10 @@ Game.prototype.changeState = function(state)
 	else if (state === 'MESSAGE')
 	{
 		this.state = 'MESSAGE';
+	}
+	else
+	{
+		console.log(state + " isn't a viable option for the game stat, ya doofus.");
 	}
 
 	if (setView)
@@ -869,7 +863,12 @@ Game.prototype.selectMainMenuSelection = function()
 	}
 	else if (this.selectedMenuItem === 1) //If it's the tutorial
 	{
-		this.changeState('TUTORIAL');
+		this.inTutorial = true;
+		g.view.clearDOM();
+		this.selectedMenuItem = false;
+		this.initialize();
+		g.view.initializeGameView();
+		this.changeState('DEFAULT');
 	}
 }
 
@@ -1546,7 +1545,6 @@ Game.prototype.playerDescend = function()
 	else
 	{
 		this.depth++;
-		console.log(this.inTutorial)
 		if (this.inTutorial)
 		{
 			this.generateNewTutorialLevel();
@@ -1671,7 +1669,7 @@ Game.prototype.getRandomWeapon = function()
 Game.prototype.initialize = function()
 {
 	this.player = new Player(this.playerRace, this.playerClass);
-	if (this.state === 'TUTORIAL')
+	if (this.inTutorial)
 	{
 		this.generateNewTutorialLevel();
 	}
