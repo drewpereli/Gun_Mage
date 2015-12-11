@@ -11,7 +11,7 @@ function View(width, height){
 	this.viewX = 0; //Relative to the map
 	this.viewY = 0;
 
-	this.cellLength = 15;
+	this.cellLength = 16;
 
 	//TEST
 	/*
@@ -122,7 +122,7 @@ function View(width, height){
 		width: '260',
 		height: '160',
 		top: '250',
-		left: '750',
+		left: '785',
 		border: '3px solid black'
 	}
 
@@ -151,7 +151,7 @@ function View(width, height){
 		width: '250',
 		height: '200',
 		top: '30',
-		left: '750',
+		left: '785',
 		padding: '10',
 		margin: '3',
 		border: '3px solid black',
@@ -199,7 +199,7 @@ function View(width, height){
 		width: '270',
 		height: '180',
 		top: '420',
-		left: '750',
+		left: '785',
 		border: '3px solid black',
 	}
 
@@ -2156,7 +2156,7 @@ View.prototype.initializeGameView = function(){
 	//Initialize the depth and orb info
 	var containerStyle = {
 		position: 'absolute',
-		top: '500px',
+		top: '530px',
 		fontSize: '14pt',
 	}
 
@@ -2171,7 +2171,7 @@ View.prototype.initializeGameView = function(){
 	var depth = document.createElement('span');
 	depthContainer.appendChild(depth);
 	this.depthSpan = depth;
-	depthContainer.style.left = '250px';
+	depthContainer.style.left = '260px';
 
 	var orbContainer = document.createElement('div');
 	document.body.appendChild(orbContainer);

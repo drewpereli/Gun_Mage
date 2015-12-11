@@ -12,7 +12,7 @@ function Cell(x, y){
 		//This gets filled in 'initialize'
 	}
 
-	this.lavaSquareLength = 5;
+	this.lavaSquareLength = 8;
 	
 }
 

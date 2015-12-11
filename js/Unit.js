@@ -1320,6 +1320,10 @@ Unit.prototype.reduceHealth = function(amount)
 	else
 	{
 		g.game.tookDamage.push(this);
+		if (this.behavior === 'SLEEPING' || this.behavior === 'WANDERING')
+		{
+			this.changeBehavior('CURIOUS');
+		}
 	}
 }
 
