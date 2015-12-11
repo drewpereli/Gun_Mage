@@ -226,8 +226,10 @@ Game.prototype.changeState = function(state)
 	}
 	else if (state === 'TUTORIAL')
 	{
+		this.inTutorial = true;
 		g.view.clearDOM();
-		this.state = 'TUTORIAL';
+		//this.state = 'TUTORIAL';
+		this.state = 'DEFAULT';
 		this.selectedMenuItem = false;
 		this.initialize();
 		g.view.initializeGameView();
@@ -1547,7 +1549,8 @@ Game.prototype.playerDescend = function()
 	else
 	{
 		this.depth++;
-		if (this.state === 'TUTORIAL')
+		console.log(this.inTutorial)
+		if (this.inTutorial)
 		{
 			this.generateNewTutorialLevel();
 		}

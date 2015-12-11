@@ -1543,7 +1543,7 @@ Level.prototype.initialize = function()
 		}
 	}
 	this.setTileSiblings();
-	if (g.game.state !== 'TUTORIAL')
+	if (g.game.inTutorial === false)
 	{
 		this.setNumberOfEnemies();
 		this.setNumberOfItems();
