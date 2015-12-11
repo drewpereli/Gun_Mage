@@ -43,15 +43,15 @@ MeleeWeapon.prototype.initialize = function(tile)
 		var multiplier = g.itemBonusMultipliers[rarity];
 		this.name = originalName + ' of ' + rarity + ' ' + bonus;
 
-		if (bonus === 'DAMAGE')
+		if (bonus === 'Damage')
 		{
 			this.damageM = Math.round(this.damageM * multiplier);
 		}
-		else if (bonus === 'QUICKNESS')
+		else if (bonus === 'Quickness')
 		{
 			this.attackTime = Math.ceil(this.attackTime / multiplier);
 		}
-		else if (bonus === 'FORCE')
+		else if (bonus === 'Force')
 		{
 			this.knockBack += Math.floor(multiplier);
 		}
