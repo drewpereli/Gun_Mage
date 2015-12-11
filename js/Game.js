@@ -16,9 +16,9 @@ function Game(){
 	this.selectedTile = false; //When examining or aiming, whate tile is selected
 	//this.tilesBetween = []; //Tiles in between selectedTile and player.tile. Used for aiming info and graphics
 
-	this.depth = 1; //How deep we are in the dungeon
-	this.widthInit = 25; //Width of level 1. The levels will get bigger as we go
-	this.heightInit = 25; //Height of level 1
+	this.depth = 2; //How deep we are in the dungeon
+	this.widthInit = 50; //Width of level 1. The levels will get bigger as we go
+	this.heightInit = 50; //Height of level 1
 	this.levelSizeGrowthRathe = 1.15;//How much bigger the width/height of each level is than the one before it.
 
 
@@ -36,11 +36,13 @@ function Game(){
 	this.killed = [];
 	this.madeNoiseThisTick = []//All the tiles that made noise this tick. After the tick, the tick function will set them to 0 and clear the array.
 	this.messageLogged = false;
+
+	this.inTutorial = false;
 	
 	this.DEBUG = {
 		allTilesVisible: false, //Can see every tile
 		blankDungeon: false, //No walls in the dungeon except the outer ones
-		enemiesInBlankDungeon: 1, //If the dungeon is blank, this is how many enemies will be in it
+		enemiesInBlankDungeon: 0, //If the dungeon is blank, this is how many enemies will be in it
 		dontShowLighting: false, //If true, all the tiles will have BRIGHT as their lighting
 		playerInvincible: false,
 		showEnemyVision: false, //WONT WORK RIGHT NOW. COMMENTED OUT CODE. Highlights all the tiles visible by an enemy
@@ -57,7 +59,7 @@ function Game(){
 		playerViewAngle: false, //If not false, overides the player view angle and returns this number. Set it to a value in degrees
 		playerStartingWeapon: false, //If false, the player doesn't start with a weapon. Else, the player starts with the weapon object contained here.
 		showKnockBackPath: false, //WONT WORK RIGHT NOW. COMMENTED OUT CODE. If true, when you shoot at a unit with a gun with knockback, it shows the tiles used to calculate the path
-		numberOfEnemies: 10, //sets the number of enemies that will spawn
+		numberOfEnemies: false, //sets the number of enemies that will spawn
 		showNoise: false, //Writes the noise value of each tile to the screen
 	}
 }
@@ -146,6 +148,10 @@ Game.prototype.changeState = function(state)
 		if (this.selectedTile === false)
 		{
 			this.selectedTile = this.player.tile;
+		}
+		if (this.state === 'MESSAGE')
+		{
+			g.view.eraseTutorialMessage();
 		}
 		g.view.centerOnTile(this.selectedTile);
 		this.state = "EXAMINING";
@@ -1211,6 +1217,25 @@ Game.prototype.displayTutorialMessage = function(message)
 
 
 
+Game.prototype.getInfo = function()
+{
+	this.changeState("MESSAGE");
+	var t = this.selectedTile;
+	if (t.unit === false)
+	{
+		return;
+	}
+	if (t.unit === this.player)
+	{
+		return;
+	}
+
+	var message = "<h2>" + t.unit.name + "</h4>" + g.ENEMYDESCRIPTIONS[t.unit.enemyType];
+	g.view.displayTutorialMessage(message);
+}
+
+
+
 Game.prototype.changeLightingEmphasis = function()
 {
 	if (this.lightingEmphasis === 2)
@@ -1315,28 +1340,6 @@ Game.prototype.tick = function(ticks)
 }
 
 
-/*
-Game.prototype.setAllTilesToChanged = function()
-{
-	for (var x = 0 ; x < this.level.width ; x++)
-	{
-		for (var y = 0 ; y < this.level.height ; y++)
-		{
-			this.level.getTile(x, y).changed = true;
-		}
-	}
-}
-
-
-Game.prototype.setAllTilesToUnchanged = function()
-{
-	var t = this.level.getTiles();
-	for (var i = 0 ; i < t.length ; i++)
-	{
-		t[i].changed = false;
-	}
-}
-*/
 
 
 
@@ -1544,7 +1547,14 @@ Game.prototype.playerDescend = function()
 	else
 	{
 		this.depth++;
-		this.generateNewLevel();
+		if (this.state === 'TUTORIAL')
+		{
+			this.generateNewTutorialLevel();
+		}
+		else
+		{
+			this.generateNewLevel();
+		}
 		this.transportUnit(this.player, this.level.spawnTile);
 	}
 	
@@ -1553,6 +1563,8 @@ Game.prototype.playerDescend = function()
 
 Game.prototype.generateNewTutorialLevel = function()
 {
+	this.player.overrides.moveNoise = 0;
+	this.inTutorial = true;
 	this.level = new Level(50, 50, this.depth);
 	this.level.initialize(); //Will query the game state and make a tutorial level
 	g.view.setDepth();
@@ -1658,6 +1670,7 @@ Game.prototype.getRandomWeapon = function()
 
 Game.prototype.initialize = function()
 {
+	this.player = new Player(this.playerRace, this.playerClass);
 	if (this.state === 'TUTORIAL')
 	{
 		this.generateNewTutorialLevel();
@@ -1666,7 +1679,6 @@ Game.prototype.initialize = function()
 	{
 		this.generateNewLevel();
 	}
-	this.player = new Player(this.playerRace, this.playerClass);
 	this.spawnUnit(this.player, this.level.spawnTile);
 }
 

@@ -154,18 +154,12 @@ function Pistol()
 	this.damageB = g.rand.nextInt(1, 5);
 	this.damageM = g.rand.nextInt(6, 12) / 2;
 	this.damageP = 'dexterity';
-	this.range = g.rand.nextInt(6, 10);
-	this.range = g.rand.nextInt(7, 11); //TEST
+	this.range = g.rand.nextInt(7, 10);
 	this.chanceB = 90;
 	this.chanceM = g.rand.nextInt(1, 2);
 	this.chanceP = 'perception';
 	this.noise = g.rand.nextInt(1, 5);
 	this.clipSize = 10;
-	//this.loadedAmmo = this.clipSize;
-	this.armorPiercing = 0;
-	this.spreadAngle = 0;
-	this.followThrough = 0;
-	this.knockBack = 3;
 
 	/*
 	this.shootSound = document.createElement('audio');
@@ -204,4 +198,34 @@ function Rifle()
 
 Rifle.prototype = new Gun();
 
+
+function TutorialPistol()
+{
+	this.name = "Pistol";
+	this.subtype = 'PISTOL';
+	this.attackTime = 2;
+	this.reloadTime = 1;
+	this.damageB = 3;
+	this.damageM = 5;
+	this.damageP = 'dexterity';
+	this.range = 8;
+	this.chanceB = 90;
+	this.chanceM = 2;
+	this.chanceP = 'perception';
+	this.noise = 5;
+	this.clipSize = 10;
+}
+
+TutorialPistol.prototype = new Gun();
+
+TutorialPistol.prototype.initialize = function(tile)
+{
+	this.loadedAmmo = this.clipSize;
+	this.tile = tile;
+	if (this.tile) //Tile would be false if the player is starting with a weapon
+	{
+		tile.setItem(this);
+	}
+
+}
 

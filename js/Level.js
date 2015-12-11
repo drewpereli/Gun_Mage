@@ -707,7 +707,15 @@ Level.prototype.generate = function()
 
 
 
+
 Level.prototype.generateTutorialLevel = function(depth)
+{
+	this['generateTutorialLevel' + depth]();
+}
+
+
+
+Level.prototype.generateTutorialLevel1 = function()
 {
 	//Assume 50 x 50 dungeon
 	var rooms = [
@@ -739,8 +747,8 @@ Level.prototype.generateTutorialLevel = function(depth)
 		}
 	}
 
-	//var mTile = this.getTile(7, 4);
-	//mTile.setMessage('WALL');
+	var stairsDown = this.getTile(27, 35);
+	stairsDown.setTerrain("STAIRSDOWN");
 	
 	var messageTiles = [
 			this.getTile(7, 4),
@@ -774,6 +782,73 @@ Level.prototype.generateTutorialLevel = function(depth)
 	startPoint.setTerrain("SPAWNPOINT");	
 	this.spawnTile = startPoint;	
 	
+}
+
+
+
+Level.prototype.generateTutorialLevel2 = function()
+{
+	var rooms = [
+			{x1: 37, y1: 4, x2: 41, y2: 9},
+			{x1: 37, y1: 15, x2: 40, y2: 20},
+			{x1: 33, y1: 27, x2: 36, y2: 31},
+			{x1: 26, y1: 27, x2: 31, y2: 31},
+			{x1: 15, y1: 18, x2: 20, y2: 24},
+			{x1: 12, y1: 35, x2: 16, y2: 40},
+			{x1: 27, y1: 39, x2: 33, y2: 43},
+			{x1: 38, y1: 43, x2: 45, y2: 47},
+				];
+
+
+	var startPoint = this.getTile(39, 6);
+	startPoint.setTerrain("SPAWNPOINT");	
+	this.spawnTile = startPoint;	
+
+
+	for (var i = 0 ; i < rooms.length ; i++)
+	{
+		var room = rooms[i];
+		this.carveRect(room.x1, room.y1, room.x2, room.y2);
+
+		if (i !== rooms.length - 1) //If it's not the last room, connect it to the room in front of it
+		{
+			var room2 = rooms[i+1];
+			var center1 = {x: Math.round((room.x1 + room.x2) / 2), y: Math.round((room.y1 + room.y2) / 2)};
+			var center2 = {x: Math.round((room2.x1 + room2.x2) / 2), y: Math.round((room2.y1 + room2.y2) / 2)};
+			this.connectPointsDeterministic(center1, center2);
+		}
+	}
+
+	var gunTile = this.getTile(39, 12);
+	var gun = new TutorialPistol();
+	gun.initialize(gunTile);
+
+	//9 messages
+	var messageTiles = 	[
+			this.getTile(39, 10),
+			this.getTile(39, 13),
+			this.getTile(36, 18),
+			this.getTile(35, 25),
+			this.getTile(31, 29),
+			this.getTile(21, 29),
+			this.getTile(14, 26),
+			this.getTile(14, 34),
+			this.getTile(17, 38),
+					];
+
+	var messages = [];
+	for (var i = 0 ; i < g.TUTORIALMESSAGES[this.currentDepth].length ; i++) //8 total
+	{
+		var message = g.TUTORIALMESSAGES[this.currentDepth][i];
+		messages.push(message);
+	}	
+
+	for (var i = 0 ; i < messageTiles.length ; i++)
+	{
+		var mT = messageTiles[i];
+		var message = messages[i];
+		mT.setMessage(message);
+	}
 }
 
 
@@ -1477,7 +1552,7 @@ Level.prototype.initialize = function()
 	}
 	else
 	{
-		this.generateTutorialLevel();
+		this.generateTutorialLevel(this.currentDepth);
 	}
 	
 }

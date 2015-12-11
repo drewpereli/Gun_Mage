@@ -1736,6 +1736,11 @@ Unit.prototype.getMoveNoise = function()
 		return g.game.DEBUG.playerMoveNoise;
 	}
 
+	if (this.overrides.moveNoise !== false)
+	{
+		return this.overrides.moveNoise;
+	}
+
 	var noise = 20 - 2 * this.get('dexterity');
 	if(this.equipedHelmet)
 	{

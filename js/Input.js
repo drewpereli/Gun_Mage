@@ -13,7 +13,6 @@ function Input()
 //Down Arrow: 40
 //Space: 32
 //Period: 190
-//f: 70 -- fire/aim
 //x: 88 -- Examine
 //m: 77 -- Menu
 //e: 69 -- Equipment, Equip, unequip (depending on the state)
@@ -24,14 +23,12 @@ function Input()
 //4: 52 -- Power 4
 //5: 53 -- Power 5
 //Esc: 27 -- Options, Escape (back to default state usually)
-//d: 68 -- Drop
-//o: 79 -- Open door
-//c: 67 -- Close door
-//g: 71 -- Get object
-//a: 65 -- Activate
+//d: 68 -- Destroy
+//a: 65 -- Attack/aim
 //u: 85 -- Use
 //r: 82 -- Reload
 //l: 76 -- Emphasize/demphasize lighting
+//i: 73 -- Get info
 //Tab: 9 -- Change stance
 //?: Shift + 191 -- Open manual
 //Enter: 13 -- Selecting menu options
@@ -468,6 +465,10 @@ Input.prototype.keyDown = function(e)
 			case 88:
 				g.game.changeState("DEFAULT");
 				break;
+			//i
+			case 73:
+				g.game.getInfo();
+				break;
 			//m
 			case 77:
 				g.game.changeState("MENU.CHARACTER");
@@ -735,7 +736,8 @@ Input.prototype.keyDown = function(e)
 	{
 		if (code === 27)//Escape
 		{
-			g.game.changeState('DEFAULT');
+			if (g.game.inTutorial){g.game.changeState('DEFAULT');}
+			else g.game.changeState('EXAMINING');
 		}
 	}
 }

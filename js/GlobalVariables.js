@@ -197,6 +197,19 @@ function GlobalVariables(){
 	}
 
 
+	this.ENEMYDESCRIPTIONS = {
+		ZOMBIE: "Zombies move slowly but surely towards you. ",
+		UNDEADSOLDIER: "Like a zombie, but it's liable to shoot you in the face with its pistol.",
+		HIVE: "A hive will keep putting out units if you're close enough to it. Destroy the hive to make it stop.",
+		SCARAB: "These little fuckers will run at you and explode. They do damage in a 3x3 square of tiles around them. They also explode when they die.",
+		COLOSSUS: "Colossi guys move very slowly, but they have tons of health and do lots of damage. You probably want to run away.",
+		SPIDERMOTHER: "When spider mothers die, their egg sack bursts and little spiders explode out of them.",
+		SPIDER: "Spiders move quickly and don't do too much damage, but they can be nasty in groups.",
+		SECURITYDRONE: "Security Drones move pretty quickly and do decent damage. They'll keep there distance from you, and shoot you as they flee.",
+		LUMENDROID: "Lumen Drois light up all the tiles in a 3 tile radius around them.",
+	}
+
+
 
 
 	this.TUTORIALMESSAGES = [
@@ -212,6 +225,15 @@ function GlobalVariables(){
 				"Down this next hallway you’ll see a <. This symbol represent a staircase. Simply move onto the staircase to descend to a new level. But be aware, you can’t return once you’ve gone down!",
 			],
 			[//Depth 2
+				"See that " + this.chars.GUN + " ? That’s a gun. Walk over it to pick it up.",
+				"To equip it, press ‘e’ to go into the equipment menu. Use the arrow keys to select it, and hit ‘enter’ or ‘e’ to equip it. ",
+				"You can see all the relevant information about your weapon in the equipment screen as well. Each weapon has a weighted damage value and a base damage value. The weighted value damage is multiplied by one of your four core attributes. The result is added to the base damage value to get the total damage of the weapon. The pistol you have right now has a base damage of 3 and a weighted damage of 5, and the weighted damage is multiplied by your dexterity. So your pistol’s damage is equal to 5 + 3 x [dex] = 5 + 0 = 5. If you raise your dexterity by 1, your pistol will to 3 more damage! ",
+				"The range of your weapon represents the maximum distance an enemy can be from you for you to be able to attack it. The attack time represents how many ticks will elapse when you attack with the weapon. The reload time represents how many ticks will elapse when you reload. The clip size represents how many times you can shoot before you have to reload. The noise of your weapon is important too, but that will be covered in a later level. ",
+				"The accuracy represents the chance that your attack will not miss. However, even if you’re attack doesn’t miss, the enemy still often has a chance to dodge the attack. So your chance to damage an enemy is equal to [your weapon’s accuracy] x [inverse of the enemy’s dodge chance]. so if you’re accuracy is 80%, and the enemy has a 25% chance to dodge, your chance of hitting the enemy will be 80% x [inverse of 25%] = 80% x 75% = 60%. Your accuracy works similarly to you damage in that there is a base value and a weighted value. The weighted value is usually multiplied by your perception. ",
+				"The average damage per tick of your weapon represents the average amount of damage you will do per tick elapsed when you shoot. It is equal to damage x accuracy / attack time. So in the case of your pistol, it would be equal to 8 x .9 / 2 = 3.6.",
+				"The other three main stats are spread angle, follow through, and knock back. Weapons with a non-zero spread angle shoot all enemies within a cone. The width of the cone is equal to the spread angle in degrees. Weapons with a non-zero follow through can shoot through that many enemies. So a weapon with a follow through of one will damage one enemy and an enemy behind it. A weapon with a follow through of three will go through three enemies in a line and stop at a fourth, damaging all four of them equally. Weapons with a non-zero knock back will knock back any enemies you hit that many tiles.",
+				"You’ll find a zombie in the next room. This zombie won’t do any damage, but zombies in the real game will, so keep that in mind. If you want more information about the zombie, go into examine mode and move the reticule to the zombie. If you want even more info, hit ‘i’ while the reticule is over the zombie.",
+				"Hit ‘a’ to go into aim mode. Use the arrow keys to aim at the zombie. Hit ‘a’ or enter to shoot. If you have to reload, hit ‘r’. Try to kill it, or just continue to the next level!",
 			]
 
 							]

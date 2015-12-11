@@ -301,8 +301,11 @@ g.constructors.SpiderMother.prototype.die = function()
 				continue;
 			}
 
-			//Else, spawn a new spider
-			g.game.spawnUnit(new g.constructors.Spider(), tile, 'CURIOUS');
+			//Else, spawn a new spider maybe 
+			if (g.rand.next(0, 1) < .5)
+			{
+				g.game.spawnUnit(new g.constructors.Spider(), tile, 'CURIOUS');
+			}
 		}
 	}
 	this.dead = true;
