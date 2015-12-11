@@ -1,8 +1,6 @@
 
 function Unit()
 {
-	this.race;
-	this.class;
 
 	this.level;
 
@@ -1736,7 +1734,8 @@ Unit.prototype.getMoveNoise = function()
 		return g.game.DEBUG.playerMoveNoise;
 	}
 
-	if (this.overrides.moveNoise !== false)
+
+	if (this.overrides.moveNoise)
 	{
 		return this.overrides.moveNoise;
 	}
@@ -2521,14 +2520,10 @@ Unit.prototype.initialize = function(tile, behavior)
 		this.equipedWeapon.initialize(false);
 	}
 
-	if (this.powers.length > 0)
+	
+	if (this === g.game.player)
 	{
-		for (var i = 0 ; i < this.powers.length ; i++)
-		{
-			this.powers[i].initialize(this);
-			//this.powers[i].upgrade();
-			//this.powers[i].upgrade();
-		}
+		this.initializePowers();
 	}
 
 	//If it's a lumen droid, reset the lighting

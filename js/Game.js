@@ -9,7 +9,7 @@ function Game(){
 	this.playerRace;
 	this.playerClass;
 	this.playerSkillPoints = 0;
-	this.playerPowerPoints = 10;
+	this.playerPowerPoints = 0;
 
 	this.playerHealthLastTick = 0; //Used when resting to see if the player took damage
 
@@ -17,8 +17,8 @@ function Game(){
 	//this.tilesBetween = []; //Tiles in between selectedTile and player.tile. Used for aiming info and graphics
 
 	this.depth = 1; //How deep we are in the dungeon
-	this.widthInit = 50; //Width of level 1. The levels will get bigger as we go
-	this.heightInit = 50; //Height of level 1
+	this.widthInit = 25; //Width of level 1. The levels will get bigger as we go
+	this.heightInit = 25; //Height of level 1
 	this.levelSizeGrowthRathe = 1.15;//How much bigger the width/height of each level is than the one before it.
 
 
@@ -461,11 +461,7 @@ Game.prototype.playerUsePower = function(powerNumber)
 
 Game.prototype.playerPickUp = function()
 {
-	if (this.player.tile.item === false)
-	{
-		g.view.logAlert("There's no item here.");
-		return;
-	}
+
 	if (this.player.equipment.length >= 20)
 	{
 		g.view.logAlert("You're inventory is full.")
@@ -474,7 +470,8 @@ Game.prototype.playerPickUp = function()
 	//If there is an item there
 	this.player.pickUp();
 	this.player.tile.setItem(false);
-	this.tick(this.player.getTime);
+	g.view.setEquipmentMainDiv();
+	g.view.setCharacterMainDiv();
 	g.view.set();
 }
 
@@ -768,11 +765,11 @@ Game.prototype.upgradePower = function()
 
 
 Game.prototype.changeClassMenuSelection = function(direction)
-{
-	/*
+{	
+	
 	if (direction === 'DOWN')
 	{
-		if (this.selectedMenuItem === 0)
+		if (this.selectedMenuItem === 2)
 		{
 			this.selectedMenuItem = 0;
 		}
@@ -781,11 +778,11 @@ Game.prototype.changeClassMenuSelection = function(direction)
 			this.selectedMenuItem++;
 		}
 	}
-	else//If direction is down
+	else//If direction is up
 	{
 		if (this.selectedMenuItem === 0)
 		{
-			this.selectedMenuItem = 0;
+			this.selectedMenuItem = 2;
 		}
 		else
 		{
@@ -793,8 +790,8 @@ Game.prototype.changeClassMenuSelection = function(direction)
 		}
 	}
 
-	g.view.selectRaceMenuItem();
-	*/
+	g.view.selectClassMenuItem();
+	
 }
 
 
@@ -1115,10 +1112,10 @@ Game.prototype.equipOrUnequipSelectedItem = function()
 	g.view.closeMenu();
 	g.view.openMenu();
 	g.view.selectEquipmentItem();
-	g.view.setEquipmentMainDiv();
 	//Reset health and energy in case our max energy is now lower than our current energy
 	this.player.resetHealthAndEnergy();
 	g.view.setCharacterMainDiv();//Because max health and max energy can change
+	g.view.setEquipmentMainDiv();
 }
 
 

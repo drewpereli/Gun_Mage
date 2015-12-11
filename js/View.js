@@ -389,7 +389,6 @@ function View(width, height){
 	}
 
 	this.classMenuContainers = {
-		PLACEHOLDER: false,
 	}
 }
 
@@ -1352,6 +1351,7 @@ View.prototype.selectClassMenuItem = function()
 
 	var i = 0;
 	var classDescription = '';
+
 	for (var name in this.classMenuContainers)
 	{
 		var cont = this.classMenuContainers[name];

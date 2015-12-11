@@ -166,7 +166,27 @@ Player.prototype.pickUp = function()
 {
 	var item = this.tile.item;
 	this.equipment.push(item);
-	this.noiseToPropogate = 0;
+	if (item.type === 'GUN' || item.type === 'MELEE')
+	{
+		if (this.equipedWeapon === false)
+		{
+			this.equipedWeapon = item;
+		}
+	}
+	else if (item.type === 'ARMOR')
+	{
+		if (this.equipedArmor === false)
+		{
+			this.equipedArmor = item;
+		}
+	}
+	else if (item.type === 'HELMET')
+	{
+		if (this.equipedHelmet === false)
+		{
+			this.equipedHelmet = item;
+		}
+	}
 }
 
 
@@ -810,6 +830,56 @@ Player.prototype.getPowerObject = function(powerName)
 	}
 	return false;
 }
+
+
+
+
+
+
+
+
+
+Player.prototype.initializePowers = function()
+{
+	if (this.playerClass === 'SOLDIER')
+	{
+		this.powers = 	[
+					new Power("turn"),
+					new Power("trackMovement"),
+					new Power("adrenalineMeter"),
+					new Power("focus")
+						];
+	}
+	else if (this.playerClass === 'INFILTRATOR')
+	{
+		this.powers = 	[
+					new Power("blank"),
+					new Power("cloak"),
+					new Power("slowTime"),
+						];
+
+	}
+	else if (this.playerClass === 'ENGINEER')
+	{
+		this.powers = 	[
+					new Power("shock"),
+					new Power("heal"),
+					new Power("conjureZombie"),
+					new Power("push")
+						];
+
+	}
+
+	for (var i in this.powers)
+	{
+		this.powers[i].initialize(this);
+	}
+}
+
+
+
+
+
 
 
 

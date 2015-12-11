@@ -131,7 +131,12 @@ function GlobalVariables(){
 	}
 
 	this.playerClasses = {
-		PLACEHOLDER: "Yeah that's right I dont have any real classes yet it's a fuckin free game you entitled shit head (real talk thought thanks for trying it)",
+		SOLDIER: "Soldiers are good at dishing out damage with weapons. They supplement their innate combat ability with powers."
+				+ "Powers: <ul><li>Turn</li><li>Track Movement</li><li>Adrenaline Meter</li><li>Focus</li></ul>",
+		INFILTRATOR: "Infiltrators are have abilities that help them remain undetected and take out enemies quickly and without drawing attention to themselves."
+				+ "Powers: <ul><li>Blink</li><li>Cloak</li><li>Slow Time</li></ul>",
+		ENGINEER: "Engineers use powers directly to damage enemies and to manipulate the battlefield."
+				+ "Powers: <ul><li>Shock</li><li>Heal</li><li>Conjure Zombie</li><li>Push</li></ul>",
 	}
 
 
