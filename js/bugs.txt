@@ -1,0 +1,7 @@
+
+1. That really weird view thing. I should probably just rewrite "setCell()"
+
+2. Sleeping scarabs don't explode
+
+3. There was a zombie walking on lava. That shit ain't right. 
+

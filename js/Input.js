@@ -43,7 +43,7 @@ Input.prototype.keyDown = function(e)
 	{
 		e.preventDefault();
 	}
-	//Open manual regardless of state
+	//If it's question mark, open manual regardless of state
 	if (code === 191)
 	{
 		if (e.shiftKey)
@@ -51,6 +51,8 @@ Input.prototype.keyDown = function(e)
 			g.game.openManual();
 		}
 	}
+
+	
 	
 
 	if (state === "DEFAULT" || state === "TUTORIAL")
