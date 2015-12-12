@@ -71,7 +71,8 @@ function GlobalVariables(){
 
 	this.chars = {
 		WALL: '#',
-		OPEN: ' ',
+		OPEN: '',
+		PIT: '\u25FC',
 		LAVA: '~',
 		STAIRSUP: '<',
 		STAIRSDOWN: '>',
@@ -277,6 +278,7 @@ GlobalVariables.prototype.initialize = function()
 	this.colors = {
 		WALL: this.COLORCONSTANTS.DARKGRAY,
 		OPEN: this.COLORCONSTANTS.LIGHTGRAY,
+		PIT: this.COLORCONSTANTS.GRAY,
 		LAVA: this.COLORCONSTANTS.ORANGE,
 		INDESTRUCTABLE: this.COLORCONSTANTS.DEEPRED,
 		STAIRS: this.COLORCONSTANTS.WHITE,

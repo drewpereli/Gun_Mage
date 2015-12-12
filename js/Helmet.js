@@ -21,8 +21,8 @@ function Helmet()
 	this.bonusValues = { //If the item isn't mundane, these are the values that the multiplier will be used on
 		damageReduction: g.rand.nextInt(5, 10),
 		dodgeChanceEffect: Math.round(g.rand.nextInt(50, 100)) / 5,
-		moveNoiseEffect: g.rand.nextInt(-5, -15),
-		visibilityEffect: g.rand.nextInt(-5, -15),
+		moveNoiseEffect: g.rand.nextInt(5, -5),
+		visibilityEffect: g.rand.nextInt(5, -5),
 		viewDistanceEffect: g.rand.nextInt(2, 7),
 		viewAngleEffect: Math.round(g.rand.nextInt(50, 450) / 5),
 		maxHealthEffect: g.rand.nextInt(10, 30),

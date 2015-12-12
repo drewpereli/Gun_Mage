@@ -8,9 +8,9 @@ function Armor()
 	
 	this.damageReduction = g.rand.nextInt(0, 20); //always positive
 	this.dodgeChanceEffect = 0;//g.rand.nextInt(-10, 10);
-	this.moveNoiseEffect = g.rand.nextInt(-20, 20);
+	this.moveNoiseEffect = g.rand.nextInt(-10, 20);
 	//this.moveTimeEffect = g.rand.nextInt(-10, 10);
-	this.visibilityEffect = g.rand.nextInt(-20, 20);
+	this.visibilityEffect = g.rand.nextInt(-10, 20);
 	this.viewDistanceEffect = 0
 	this.viewAngleEffect = 0
 	this.maxHealthEffect = g.rand.nextInt(0, 30); //Always positive

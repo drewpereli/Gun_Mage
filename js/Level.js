@@ -703,6 +703,64 @@ Level.prototype.generate = function()
 	}
 
 
+	//Place some pits using CA
+	var startingPits = 20;
+
+	for (var i = 0 ; i < startingPits ; i++)
+	{
+		var t;
+		var foundTile = false;
+		findAppropriateTile: do
+		{
+			t = this.getRandomOpenTile();
+			for (var j = 0 ; j < 4 ; j++)
+			{
+				var s = t.siblings[j];
+				if (s.terrain === 'LAVA')
+				{
+					continue findAppropriateTile;
+				}
+			}
+
+			break; //If we get down here, we know the tile is goooood 
+		}
+		while (true)
+
+		t.setElevation(0);
+	}
+
+
+
+	//Do the CA
+	var cAIterations = 4;
+	var pitChance = .1;
+	var tiles = this.getTiles();
+	for (var i = 0 ; i < 4 ; i++)
+	{
+		//go through all the tiles
+		for (var j in tiles)
+		{
+			var t = tiles[j];
+			if (t.terrain !== 'OPEN') continue;
+			if (t.elevation === 0) continue;
+
+			for (var s in t.siblings)
+			{
+				var sT = t.siblings[s];
+				if (sT.terrain !== 'OPEN') continue;
+				if (sT.elevation === 0)
+				{
+					if (g.rand.next(0, 1) < pitChance)
+					{
+						t.setElevation(0);
+						break;
+					}
+				}
+			}
+		}
+	}
+
+
 	return true;
 
 }

@@ -14,6 +14,7 @@ function Tile(x, y){
 	this.blocksMovement = true;
 	this.blocksNoise = true;
 	this.forbidsMovement = true;//A lava tile for example won't block movement, but it will forbid it so the player/enemies can't walk into it.
+	this.elevation = 1; //Can be 1 or 0. 
 
 	this.light = "DARK"; //Dark, medium, bright
 	this.isLightSource = false;
@@ -176,6 +177,12 @@ Tile.prototype.setItem = function(item)
 Tile.prototype.setMessage = function(message)
 {
 	this.message = message;
+}
+
+
+Tile.prototype.setElevation = function(el)
+{
+	this.elevation = el;
 }
 
 

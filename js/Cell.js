@@ -129,7 +129,7 @@ Cell.prototype.initialize = function()
 	{
 		var canvas = g.view.canvases[name];
 		this.ctxs[name] = canvas.getContext('2d');
-		this.ctxs[name].font = g.fontSize + 'pt ' + g.fontFamily;
+		//this.ctxs[name].font = g.fontSize + 'pt ' + g.fontFamily;
 	}
 	this.cellLength = g.view.cellLength;
 }

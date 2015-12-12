@@ -495,10 +495,21 @@ View.prototype.setCell = function(cell)
 		var p = g.game.player;
 		if (terrain === 'OPEN')
 		{
-			color = g.colors.OPEN;
+			color = tile.elevation === 1 ? g.colors.OPEN : g.colors.PIT;
+		
+			if (tile.unit || tile.item)
+			{
+				character = '';
+			}
+			else
+			{
+				character = tile.elevation === 1 ? g.chars.OPEN : g.chars.PIT;
+			}
 			cell.fillRect(color, 'terrain');
 			color = g.colors.border;
 			cell.strokeRect(color, 'terrain');
+			color = g.COLORCONSTANTS.DARKGRAY;
+			cell.fillText(character, color, 'terrain');
 		}
 		else if (terrain === 'WALL')
 		{
@@ -2321,7 +2332,7 @@ View.prototype.initializeGameView = function(){
 		zIndex++;
 
 		var ctx = canvas.getContext('2d');
-		ctx.font = g.fontSize + 'px monospace';
+		ctx.font = g.fontSize + 'pt ' + g.fontFamily;
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
 
@@ -2340,6 +2351,10 @@ View.prototype.initializeGameView = function(){
 		else if (canvasName === 'stealth')
 		{
 			canvas.style.opacity = .5;
+		}
+		else if (canvasName === 'units')
+		{	
+			ctx.font = '900 ' + g.fontSize + 'pt ' + g.fontFamily;
 		}
 
 		document.body.appendChild(canvas);
