@@ -13,7 +13,7 @@ function Player(playerRace, playerClass)
 	this.playerClass = playerClass;
 
 
-	this.strength = 0;
+	this.strength = 100;
 	this.dexterity = 0;
 	this.intelligence = 0;
 	this.perception = 0;

@@ -57,7 +57,7 @@ function Game(){
 		highlightLightSources: false, //Makes tiles witha light source yellow
 		attackGraphicsOff: false, //If true, it doesn't activate the attack graphics
 		playerViewAngle: false, //If not false, overides the player view angle and returns this number. Set it to a value in degrees
-		playerStartingWeapon: false, //If false, the player doesn't start with a weapon. Else, the player starts with the weapon object contained here.
+		playerStartingWeapon: new AssaultRifle(), //If false, the player doesn't start with a weapon. Else, the player starts with the weapon object contained here.
 		showKnockBackPath: false, //WONT WORK RIGHT NOW. COMMENTED OUT CODE. If true, when you shoot at a unit with a gun with knockback, it shows the tiles used to calculate the path
 		numberOfEnemies: false, //sets the number of enemies that will spawn
 		showNoise: false, //Writes the noise value of each tile to the screen
