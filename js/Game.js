@@ -1207,6 +1207,36 @@ Game.prototype.turnUnitInstant = function(unit, directionIndex)
 }
 
 
+
+//Sees if 'tile' being a pit changes anything
+Game.prototype.reevaluateTerrain = function(tile)
+{
+	if (tile.elevation !== 0) return;
+
+	var changed = false;
+	for (var i in tile.siblings)
+	{
+		var sib = tile.siblings[i];
+		if (sib.terrain === 'LAVA') 
+		{
+			changed = true;
+			break;
+		}
+	}
+
+	if (changed === false) return;
+
+	var pits = this.level.floodFillPitsFromTile(tile);
+
+	for (var i in pits)
+	{
+		pits[i].setTerrain('LAVA');
+	}
+}
+
+
+
+
 Game.prototype.displayTutorialMessage = function(message)
 {
 	this.changeState("MESSAGE");
@@ -1473,6 +1503,15 @@ Game.prototype.processAttack = function(attacker, targetTile)
 				targetTile.setTerrain('OPEN');
 			}
 		}
+		else if (targetTile.terrain === 'OPEN' && targetTile.elevation === 1)
+		{
+			var dam = attacker.getWeaponDamage();
+			if (g.rand.next(0, 50) < dam)
+			{
+				targetTile.setElevation(0);
+				this.reevaluateTerrain(targetTile);
+			}
+		}
 
 	}
 
@@ -1498,6 +1537,10 @@ Game.prototype.killUnit = function(unit)
 {
 	unit.dead = true;
 	this.killed.push(unit);
+	if (unit === this.player)
+	{
+		this.changeState('GAMEOVER');
+	}
 }
 
 

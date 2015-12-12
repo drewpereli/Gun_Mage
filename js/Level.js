@@ -646,6 +646,7 @@ Level.prototype.generate = function()
 	var lavaTiles = [];
 	var numberOfWallTiles = 10;
 	var numberOfLavaTiles = this.currentDepth;
+	numberOfLavaTiles = 5; //TEST
 	for (var i = 0 ; i < numberOfWallTiles ; i++)
 	{
 		var wall;
@@ -653,7 +654,7 @@ Level.prototype.generate = function()
 		{
 			wall = this.getRandomWallTile();
 		}
-		while (walls.indexOf(wall) !== -1 && wall.destructable === true)
+		while (walls.indexOf(wall) !== -1)
 
 		walls.push(wall);
 	}
@@ -665,7 +666,7 @@ Level.prototype.generate = function()
 		{
 			lava = this.getRandomWallTile();
 		}
-		while (lavaTiles.indexOf(lava) !== -1 || walls.indexOf(lava) !== -1)
+		while ((lavaTiles.indexOf(lava) !== -1 || walls.indexOf(lava) !== -1) && wall.destructable === true)
 
 		lavaTiles.push(lava);
 		lava.setTerrain('LAVA');
@@ -704,7 +705,7 @@ Level.prototype.generate = function()
 
 
 	//Place some pits using CA
-	var startingPits = 20;
+	var startingPits = 20 + this.currentDepth;
 
 	for (var i = 0 ; i < startingPits ; i++)
 	{
@@ -1288,6 +1289,49 @@ Level.prototype.getRandomUnoccupiedOpenTile = function()
 }
 
 
+
+Level.prototype.floodFillPitsFromTile = function(tile)
+{
+	if (tile.elevation !== 0)
+	{
+		return;
+	}
+
+	var queue = [];
+	var processed = [];
+	queue.push(tile);
+	while (queue.length > 0)
+	{
+		var tile = queue[0];
+		queue.splice(0, 1);
+		if (tile.elevation === 0 && tile.filled === false)
+		{
+			tile.filled = true;
+			processed.push(tile);
+			//For each sibling
+			for (var i = 0 ; i < tile.siblings.length ; i++)
+			{
+				var currSibling = tile.siblings[i];
+				if (currSibling)
+				{
+					if (currSibling.filled === false)
+					{
+						queue.push(currSibling);
+					}
+				}
+			}	
+		}
+	}
+	for (var i in processed)
+	{
+		processed[i].filled = false;
+	}
+	return processed;
+
+}
+
+
+
 Level.prototype.floodFillFromTile = function(tile)
 {
 	var queue = [];
@@ -1314,6 +1358,10 @@ Level.prototype.floodFillFromTile = function(tile)
 				}
 			}	
 		}
+	}
+	for (var i in processed)
+	{
+		processed[i].filled = false;
 	}
 	return processed;
 }

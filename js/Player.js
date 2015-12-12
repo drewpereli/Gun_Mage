@@ -45,6 +45,7 @@ function Player(playerRace, playerClass)
 	this.tilesAimedAtPower = []; //The tiles aimed at when aiming a power
 	this.actorsAimedAtPower = []; //The actors that a power will affect
 	this.wallsAimedAtPower = [];
+	this.openTilesAimedAt = [];
 
 	this.alignment = 'PLAYER';
 	/*
@@ -363,6 +364,11 @@ Player.prototype.attack = function()
 		g.game.processAttack(this, w);
 	}
 
+	for (var i in this.openTilesAimedAt)
+	{
+		g.game.processAttack(this, this.openTilesAimedAt[i]);
+	}
+
 }
 
 
@@ -656,6 +662,7 @@ Player.prototype.setAim = function()
 {
 	this.setTilesAimedAt();
 	this.setActorsAndWallsAimedAt();
+	this.setOpenTilesAimedAt();
 }
 
 
@@ -796,6 +803,30 @@ Player.prototype.setActorsAndWallsAimedAt = function()
 	}
 } 
 
+
+Player.prototype.setOpenTilesAimedAt = function()
+{
+	this.openTilesAimedAt = [];
+	for (var i in this.tilesAimedAt)
+	{
+		var t = this.tilesAimedAt[i];
+		if (t.terrain !== 'OPEN' || t.unit) continue;
+		if (this.getWeaponSpreadAngle() !== 0)
+		{
+			var d = this.tile.getRoundDistance(t);
+			if (d !== this.getWeaponRange()) continue;
+			this.openTilesAimedAt.push(t);
+		}
+		else
+		{
+			if (t === g.game.selectedTile)
+			{
+				this.openTilesAimedAt.push(t);
+				break;
+			}
+		}
+	}
+}
 
 
 

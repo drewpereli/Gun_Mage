@@ -83,9 +83,13 @@ Cell.prototype.fillLava = function()
 
 Cell.prototype.fillLavaLastSeen = function()
 {
+	var tile = g.view.getTileFromCell(this);
+	if (tile.lastLavaColors === false)
+	{
+		this.fillLava();
+	}
 	var squareLength = this.lavaSquareLength;
 	var ctx = this.ctxs.terrain;
-	var tile = g.view.getTileFromCell(this);
 
 	var x = 0;
 	for (var xPx = this.xPx ; xPx <= this.xPx + this.cellLength - squareLength ; xPx += squareLength)

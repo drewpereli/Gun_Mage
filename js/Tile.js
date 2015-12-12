@@ -32,7 +32,7 @@ function Tile(x, y){
 	this.pathFound = false;//Used for pathfinding
 	this.pathDistance = false;//Used for pathfinding
 
-	this.lastLavaColors = [];
+	this.lastLavaColors = false;
 }
 
 
@@ -245,7 +245,12 @@ Tile.prototype.setTerrain = function(terrain){
 		this.blocksVision = false;
 		this.blocksNoise = false;
 		this.forbidsMovement = true;
+		this.elevation = 0;
 
+		if (this.unit)
+		{
+			this.unit.die();
+		}
 	}
 }
 
