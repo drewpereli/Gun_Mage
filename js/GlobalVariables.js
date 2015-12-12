@@ -280,6 +280,7 @@ GlobalVariables.prototype.initialize = function()
 		LAVA: this.COLORCONSTANTS.ORANGE,
 		INDESTRUCTABLE: this.COLORCONSTANTS.DEEPRED,
 		STAIRS: this.COLORCONSTANTS.WHITE,
+		ORB: this.COLORCONSTANTS.BRIGHTPURPLE,
 		MESSAGETILE: this.COLORCONSTANTS.LIGHTBLUE,
 		border: this.COLORCONSTANTS.DARKGRAY,
 
@@ -297,8 +298,10 @@ GlobalVariables.prototype.initialize = function()
 		
 		examining: this.COLORCONSTANTS.RED, //Color of the reticule when examining
 		aiming: this.COLORCONSTANTS.GREEN, //Color of the reticule when aiming
-		tilesBetweenVisible: this.COLORCONSTANTS.GREEN, //When aiming, the color of the tiles you can see between you and the target
-		tilesBetweenInvisible: this.COLORCONSTANTS.RED, //When aiming, the color of the tiles between you and the target that block your view or that you can't see
+		tilesAimedAt: this.COLORCONSTANTS.GREEN, //When aiming, the color of the tiles you can see between you and the target
+		tilesAimedAtPower: this.COLORCONSTANTS.PURPLE,
+		actorsAimedAt: this.COLORCONSTANTS.YELLOW, //Color of the tiles of the actors you're aiming at
+		//tilesBetweenInvisible: this.COLORCONSTANTS.RED, //When aiming, the color of the tiles between you and the target that block your view or that you can't see
 		
 		stealth: this.COLORCONSTANTS.GREEN,
 

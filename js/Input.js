@@ -52,11 +52,13 @@ Input.prototype.keyDown = function(e)
 		}
 	}
 
+	/*
 	//VI key implementation
 	if (code === 72) code = 37;
 	if (code === 74) code = 40;
 	if (code === 75) code = 38;
 	if (code === 76) code = 39;
+	*/
 	
 
 	if (state === "DEFAULT" || state === "TUTORIAL")

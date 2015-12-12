@@ -644,19 +644,21 @@ Level.prototype.generate = function()
 	//First, get 10 lava cells. Then get 10 wall cells
 	var walls = [];
 	var lavaTiles = [];
-	for (var i = 0 ; i < 10 ; i++)
+	var numberOfWallTiles = 10;
+	var numberOfLavaTiles = this.currentDepth;
+	for (var i = 0 ; i < numberOfWallTiles ; i++)
 	{
 		var wall;
 		do
 		{
 			wall = this.getRandomWallTile();
 		}
-		while (walls.indexOf(wall) !== -1)
+		while (walls.indexOf(wall) !== -1 && wall.destructable === true)
 
 		walls.push(wall);
 	}
 
-	for (var i = 0 ; i < 10 ; i++)
+	for (var i = 0 ; i < numberOfLavaTiles ; i++)
 	{
 		var lava;
 		do

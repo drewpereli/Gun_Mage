@@ -415,6 +415,7 @@ View.prototype.set = function()
 		this.centerOnTile(g.game.player.tile);
 	}
 	
+	/*
 	if (g.game.state === 'AIMING')
 	{
 		this.tilesInBetween = g.game.player.tilesAimedAt;
@@ -427,7 +428,7 @@ View.prototype.set = function()
 	{
 		this.tilesInBetween = [];
 	}
-	
+	*/
 
 	for (var x = 0 ; x < this.widthInCells ; x++)
 	{
@@ -469,9 +470,229 @@ View.prototype.set = function()
 
 
 
+View.prototype.setCell = function(cell)
+{
+	cell.fullClear();
+
+	var tile = this.getTileFromCell(cell);
+
+	//If the tile is out of rance, set it to black and return 
+	if (tile === false)
+	{
+		cell.fillRect(g.COLORCONSTANTS.BLACK, 'seen');
+	}
+	else if (tile.seenByPlayer === false && g.game.DEBUG.allTilesVisible === false)
+	{
+		cell.fillRect(g.COLORCONSTANTS.BLACK, 'seen');
+	}
+	else
+	{
+		//Else if it's a real tile and it's been seen by the player
+		var color;
+		var character;
+
+		var terrain = tile.terrain;
+		var p = g.game.player;
+		if (terrain === 'OPEN')
+		{
+			color = g.colors.OPEN;
+			cell.fillRect(color, 'terrain');
+			color = g.colors.border;
+			cell.strokeRect(color, 'terrain');
+		}
+		else if (terrain === 'WALL')
+		{
+			if (tile.destructable)
+			{
+				color = g.colors.WALL;
+			}
+			else
+			{
+				color = g.colors.INDESTRUCTABLE;
+			}
+			cell.fillRect(color, 'terrain');
+			color = g.colors.border;
+			cell.strokeRect(color, 'terrain');
+			color = g.colors.defaultColor;
+			character = g.chars.WALL;
+			cell.fillText(character, color, 'terrain');
+
+		}
+		else if (terrain === 'STAIRSDOWN')
+		{
+			color = g.colors.STAIRSDOWN;
+			cell.fillRect(color, 'terrain');
+			color = g.colors.border;
+			cell.strokeRect(color, 'terrain');
+			color = g.colors.defaultColor;
+			character = g.chars.STAIRSDOWN;
+			cell.fillText(character, color, 'terrain');
+		}
+		else if (terrain === 'ORB')
+		{
+			color = g.colors.OPEN;
+			cell.fillRect(color, 'terrain');
+			color = g.colors.border;
+			cell.strokeRect(color, 'terrain');
+			color = g.colors.ORB;
+			character = g.chars.ORB;
+			cell.fillText(character, color, 'terrain');
+		}
+		else if (terrain === 'LAVA')
+		{
+			if (p.canSee(tile))
+			{
+				cell.fillLava();
+			}
+			else
+			{
+				cell.fillLavaLastSeen();
+			}
+		}
 
 
 
+
+		//Items
+		if (tile.item){
+			var item = tile.item;
+			var character = g.chars[item.type];
+			cell.fillText(character, g.colors.items, 'items');
+		}
+
+
+
+
+
+		if (tile.unit)
+		{
+			var unit = tile.unit;
+			if (unit === p)
+			{
+				if (this.showDirections) //If we're showing the directions of the units
+				{
+					character = this.directionIndexToString(unit.get('direction'));
+				}
+				else 
+				{
+					character = g.chars.PLAYER;
+				}
+				color = g.colors.defaultColor;
+				cell.fillText(character, color, 'units');
+			}
+			else 
+			{
+				if (p.canSee(tile) || g.game.DEBUG.allTilesVisible)
+				{
+					if (this.showDirections) //If we're showing the directions of the units
+					{
+						character = this.directionIndexToString(unit.get('direction'));
+					}
+					else 
+					{
+						character = g.chars[unit.enemyType];
+					}
+
+					if (unit.alignment === "ALLY")
+					{
+						color = g.colors.ALLY;
+					}
+					else
+					{
+						color = g.colors[unit.behavior];
+					}
+					cell.fillText(character, color, 'units');
+				}
+			}
+		}
+
+
+
+
+		if (this.showStealthRadius)
+		{
+			//See if the tile is within a player's stealth radius
+			if (g.game.player.isVisibleFromTile(tile) === false)
+			{
+				cell.fillRect(g.colors.stealth, 'stealth');
+			}
+		}
+
+
+
+		//Select canvas
+		if (g.game.state === 'AIMING')
+		{
+			if (p.actorsAimedAt.indexOf(tile.unit) !== -1 || p.wallsAimedAt.indexOf(tile) !== -1)
+			{
+				color = g.colors.actorsAimedAt;
+				cell.fillRect(color, 'select');
+			}
+			else if (p.tilesAimedAt.indexOf(tile) !== -1)
+			{
+				color = g.colors.tilesAimedAt;
+				cell.fillRect(color, 'select');
+			}
+		}
+		else if (g.game.state === 'AIMINGPOWER')
+		{
+			if (p.actorsAimedAtPower.indexOf(tile.unit) !== -1 || p.wallsAimedAtPower.indexOf(tile) !== -1)
+			{
+				color = g.colors.actorsAimedAt;
+				cell.fillRect(color, 'select');
+			}
+			else if (p.tilesAimedAtPower.indexOf(tile) !== -1)
+			{
+				color = g.colors.tilesAimedAtPower;
+				cell.fillRect(color, 'select');
+			}	
+		}
+
+		//Lighting
+		//Only set it if we're not in aiming mode
+		if (g.game.state !== "AIMING")
+		{
+			if (tile.light === 'DARK')
+			{
+				cell.fillRect(g.colors.DARK, 'lighting');
+			}
+
+			//ctx = this.canvases.lightingMedium.getContext('2d');
+			if (tile.light === 'BRIGHT')
+			{
+				cell.fillRect(g.colors.BRIGHT, 'lighting')
+			}
+			if (g.game.DEBUG.highlightLightSources && tile.isLightSource === true)
+			{
+				cell.fillRect(g.COLORCONSTANTS.YELLOW, 'lighting');
+			}
+		}
+
+
+		//Vision
+		if (p.canSee(tile) === false && g.game.DEBUG.allTilesVisible === false)
+		{
+			cell.fillRect(g.COLORCONSTANTS.BLACK, 'vision');
+		}
+	}
+
+
+	if (g.game.state === 'EXAMINING' || g.game.state === 'AIMING' || g.game.state === 'AIMINGPOWER')
+	{
+		if (tile === g.game.selectedTile)
+		{
+			cell.strokeThickRect(g.COLORCONSTANTS.BRIGHTRED, 'select');
+		}
+	}
+	
+}
+
+
+
+
+
+
+/*
 //Set all the canvases for an individual cell
 View.prototype.setCell = function(cell)
 {
@@ -737,7 +958,7 @@ View.prototype.setCell = function(cell)
 		cell.fillRect(g.COLORCONSTANTS.BLACK, 'seen');
 	}
 }
-
+*/
 
 
 

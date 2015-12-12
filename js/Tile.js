@@ -157,7 +157,12 @@ Tile.prototype.propogateNoise = function(noise)
 Tile.prototype.setUnit = function(unit)
 {
 	this.unit = unit;
-	this.blocksMovement = unit !== false ? true : false;
+	if (unit === false) this.setTerrain(this.terrain); //Simply reset the terrain to itself to restore the proper blocks movement, etc.
+	else 
+	{
+		this.blocksMovement = true;
+		this.forbidsMovement = true;
+	}
 }
 
 
