@@ -588,7 +588,7 @@ View.prototype.setCell = function(cell)
 				{
 					character = g.chars.PLAYER;
 				}
-				color = g.colors.defaultColor;
+				color = g.colors.PLAYER;
 				cell.fillText(character, color, 'units');
 			}
 			else 
@@ -1952,7 +1952,7 @@ View.prototype.startDamageGraphics = function()
 					character = g.view.directionIndexToString(unit.direction);
 					if (unit === g.game.player)
 					{
-						color = g.COLORCONSTANTS.BLACK;
+						color = g.COLORCONSTANTS.PLAYER;
 					}
 					else
 					{
@@ -1970,8 +1970,8 @@ View.prototype.startDamageGraphics = function()
 				{
 					if (unit === g.game.player)
 					{
-						character = '@';
-						color = g.COLORCONSTANTS.BLACK;
+						character = g.chars.PLAYER;
+						color = g.colors.PLAYER;
 					}
 					else
 					{

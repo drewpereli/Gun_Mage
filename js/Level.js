@@ -647,9 +647,9 @@ Level.prototype.generate = function()
 	var pits = [];
 	var lavaTiles = [];
 	var numberOfWallTiles = 10;
-	var numberOfLavaTiles = 5;
+	var numberOfLavaTiles = 2 * (this.depth - 1);
 	var numberOfPitTiles = 5;
-	numberOfLavaTiles = 5; //TEST
+	//numberOfLavaTiles = 5; //TEST
 
 
 
@@ -695,7 +695,7 @@ Level.prototype.generate = function()
 		lava.setTerrain('LAVA');
 	}
 
-	//var vTiles = walls.concat(lavaTiles);
+	var vTiles = walls.concat(lavaTiles);
 	//Go through all the tiles. See which tile out of 
 	var allTiles = this.getTiles();
 	for (var i in allTiles)
