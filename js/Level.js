@@ -639,14 +639,20 @@ Level.prototype.generate = function()
 		}
 	}
 
+
 	
-	//Use voronoi diagrams thing to set some of the cells to lava
+	//Use voronoi diagrams thing to set some of the cells to lava and pits
 	//First, get 10 lava cells. Then get 10 wall cells
 	var walls = [];
+	var pits = [];
 	var lavaTiles = [];
 	var numberOfWallTiles = 10;
-	var numberOfLavaTiles = this.currentDepth;
+	var numberOfLavaTiles = 5;
+	var numberOfPitTiles = 5;
 	numberOfLavaTiles = 5; //TEST
+
+
+
 	for (var i = 0 ; i < numberOfWallTiles ; i++)
 	{
 		var wall;
@@ -658,6 +664,23 @@ Level.prototype.generate = function()
 
 		walls.push(wall);
 	}
+
+
+	/*
+	for (var i = 0 ; i < numberOfPit)
+	{
+		var pit
+		do
+		{
+			lava = this.getRandomWallTile();
+		}
+		while ((pits.indexOf(lava) !== -1 || walls.indexOf(lava) !== -1) && wall.destructable === true)
+
+		pits.push(pit);
+		pit.setTerrain('PIT');
+	}
+	*/
+
 
 	for (var i = 0 ; i < numberOfLavaTiles ; i++)
 	{
@@ -672,7 +695,7 @@ Level.prototype.generate = function()
 		lava.setTerrain('LAVA');
 	}
 
-	var vTiles = walls.concat(lavaTiles);
+	//var vTiles = walls.concat(lavaTiles);
 	//Go through all the tiles. See which tile out of 
 	var allTiles = this.getTiles();
 	for (var i in allTiles)

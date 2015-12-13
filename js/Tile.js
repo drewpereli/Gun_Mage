@@ -252,6 +252,17 @@ Tile.prototype.setTerrain = function(terrain){
 			this.unit.die();
 		}
 	}
+	else if (terrain === 'HOLE')
+	{
+		if (this.unit && this.unit !== g.game.player)
+		{
+			this.unit.die();
+		}
+		else if (this.unit === g.game.player)
+		{
+			this.unit.fall();
+		}
+	}
 }
 
 
