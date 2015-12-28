@@ -324,7 +324,7 @@ GlobalVariables.prototype.initialize = function()
 
 		alerts: this.COLORCONSTANTS.WHITE,
 
-		items: this.COLORCONSTANTS.DARKGREEN,
+		items: this.COLORCONSTANTS.BRIGHTGREEN,
 
 		defaultColor: this.COLORCONSTANTS.BLACK,
 	}
