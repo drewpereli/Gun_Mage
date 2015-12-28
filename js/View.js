@@ -28,7 +28,7 @@ function View(width, height){
 
 	this.damageGraphicsOn = false; //Set to true when teh attack graphics activate. Keeps them from stepping over each other. 
 	this.explodedGraphicsOn = false; //Set to true when the exploded graphics activate. 
-
+	this.alertsToLog = []; //Alert messages to log
 
 	this.optionsMenu = false;
 	this.optionsMenuOptionDivs = {
@@ -2184,7 +2184,7 @@ View.prototype.initializeMainMenu = function()
 	//Print the title
 	var title = document.createElement('h1');
 	title.innerHTML = "DREW'S GAME";
-	title.innerHTML = title.innerHTML.replace("GAME", "<strike>GAME</strike>") + " CENSORSHIP!";
+	//title.innerHTML = title.innerHTML.replace("GAME", "<strike>GAME</strike>") + " CENSORSHIP!";
 	title.style.color = 'gold';
 	title.style.fontSize = '50pt';
 	title.style.color = g.COLORCONSTANTS.WHITE;
@@ -2550,15 +2550,36 @@ View.prototype.eraseTutorialMessage = function()
 
 
 
-
+/*
 View.prototype.logAlert = function(alert)
 {
 	var div = this.alerts;
-	div.opacity = 1; //Set to one preemptively in case we're currently logging an alert
+	//Set to one preemptively in case we're currently logging an alert
+	var period = 50; //in ms
+
+	var fadeCount = 0;
 
 	var fade = function(op, top)
 	{
-		var period = 50; //in ms
+		if (fadeCount < 2)
+		{
+			if (fadeCount === 0)
+			{
+				div.style.opacity = 1;
+				div.innerHTML = alert;
+
+			}
+			g.view.loggingMessage = true;
+			fadeCount++;
+			setTimeout(function(){fade(op, top);}, period);
+			return;
+		}
+		if (fadeCount === 2)
+		{
+			g.view.loggingMessage = false;
+		}	
+		
+
 		if (op <= 0)
 		{
 			while(div.firstChild)
@@ -2569,14 +2590,60 @@ View.prototype.logAlert = function(alert)
 			//div.style.top = g.view.alertsStyle.top + 'px';
 			return;
 		}
+		else if (g.view.loggingMessage)
+		{
+			return;
+		}
+
 		div.style.opacity = op;
 		//div.style.top = top + 'px';
 		setTimeout(function(){fade(op - .05, top - 10);}, period);
 	}
 
 
-	div.innerHTML = alert;
+	
 	setTimeout(function(){fade(.9, g.view.alertsStyle.top);}, 200);
+}
+*/
+
+View.prototype.logAlert = function(alert)
+{
+	this.alertsToLog.push(alert);
+	var div = this.alerts;
+	var period = 50; //Period in ms
+
+	var fade = function(op)
+	{
+		if (alert !== g.view.alertsToLog[g.view.alertsToLog.length - 1])
+		{
+			div.style.opacity = 1;
+			//div.innerHTML = alert;
+			for (var i = 0 ; i < g.view.alertsToLog.length - 1 ; i++)
+			{
+				g.view.alertsToLog.splice(0, 1);
+			}
+			//setTimeout(function()fade(.9), 200);
+			return;
+		}
+
+		div.innerHTML = alert;
+
+		if (op <= 0)
+		{
+			while(div.firstChild)
+			{
+				div.removeChild(div.firstChild);
+			}
+			div.style.opacity = 1;
+			return;
+		}
+
+		div.style.opacity = op;
+		//div.style.top = top + 'px';
+		setTimeout(function(){fade(op - .05, top - 10);}, period);
+	}
+
+	setTimeout(function()fade(.9), 200);
 }
 
 

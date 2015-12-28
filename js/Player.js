@@ -188,6 +188,8 @@ Player.prototype.pickUp = function()
 			this.equipedHelmet = item;
 		}
 	}
+
+	g.view.logAlert(item.name);
 }
 
 
