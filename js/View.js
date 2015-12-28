@@ -2626,7 +2626,6 @@ View.prototype.logAlert = function(alert)
 			return;
 		}
 
-		div.innerHTML = alert;
 
 		if (op <= 0)
 		{
@@ -2635,6 +2634,7 @@ View.prototype.logAlert = function(alert)
 				div.removeChild(div.firstChild);
 			}
 			div.style.opacity = 1;
+			g.view.alertsToLog = [];
 			return;
 		}
 
@@ -2643,7 +2643,8 @@ View.prototype.logAlert = function(alert)
 		setTimeout(function(){fade(op - .05, top - 10);}, period);
 	}
 
-	setTimeout(function()fade(.9), 200);
+	div.innerHTML = alert;
+	setTimeout(function()fade(.9), 500);
 }
 
 
