@@ -2465,6 +2465,8 @@ View.prototype.initializeGameView = function(){
 	escape.style.textAlign = 'center';
 
 	tM.style.visibility = 'hidden';
+
+
 	this.set();
 }
 
@@ -2644,7 +2646,7 @@ View.prototype.logAlert = function(alert)
 	}
 
 	div.innerHTML = alert;
-	setTimeout(function()fade(.9), 500);
+	setTimeout(function(){fade(.9)}, 500);
 }
 
 
