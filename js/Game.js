@@ -879,7 +879,7 @@ Game.prototype.changeMainMenuSelection = function(direction)
 {
 	if (direction === 'DOWN')
 	{
-		if (this.selectedMenuItem === 2)
+		if (this.selectedMenuItem === 1)
 		{
 			this.selectedMenuItem = 0;
 		}
@@ -892,7 +892,7 @@ Game.prototype.changeMainMenuSelection = function(direction)
 	{
 		if (this.selectedMenuItem === 0)
 		{
-			this.selectedMenuItem = 2;
+			this.selectedMenuItem = 1;
 		}
 		else
 		{

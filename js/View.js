@@ -376,7 +376,7 @@ function View(width, height){
 
 	this.mainMenuContainers = {
 		BEGIN: false,
-		TUTORIAL: false,
+		//TUTORIAL: false,
 		QUIT: false,
 	}
 
@@ -2183,7 +2183,7 @@ View.prototype.initializeMainMenu = function()
 	mainMenu.style.textAlign = 'center';
 	//Print the title
 	var title = document.createElement('h1');
-	title.innerHTML = "DREW'S GAME";
+	title.innerHTML = "GUN MAGE";
 	//title.innerHTML = title.innerHTML.replace("GAME", "<strike>GAME</strike>") + " CENSORSHIP!";
 	title.style.color = 'gold';
 	title.style.fontSize = '50pt';
