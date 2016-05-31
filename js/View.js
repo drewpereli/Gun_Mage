@@ -2433,7 +2433,51 @@ View.prototype.initializeGameView = function(){
 	this.setOrb(false);
 	
 
-	//Add tutorial message container
+
+	//Add control info div
+	var controlInfo = document.createElement("div");
+	controlInfo.innerHTML = `
+		<table>
+			<tr>
+				<td>Arrow Keys: Move</td>
+				<td>Alt + Arrow Keys: Turn (.5 x move time / 90&deg;)</td>
+			</tr>
+			<tr>
+				<td>Shift + Arrow Keys: Move without turning (2x move time)</td>
+				<td>a: Aim, attack(while aiming)</td>
+			</tr>
+			<tr>
+				<td>d: Toggle display directions</td>
+				<td>x: Toggle examine mode</td>
+			</tr>
+			<tr>
+				<td>m: Open Character Menu</td>
+				<td>esc: Open Main Menu</td>
+			</tr>
+			<tr>
+				<td>.: Wait one tick</td>
+				<td>Shift + .: Rest</td>
+			</tr>
+			<tr>
+				<td>Tab: Toggle Move Mode</td>
+			</tr>
+		<table>
+	`;
+	$(controlInfo).attr("id", "control-info-main-div")
+		.css("position", "absolute")
+		.css("border", "3px solid black")
+		.css("width", this.canvasStyle.width + "px")
+		.css("height", "150px")
+		.css("left", "250px")
+		.css("top", "560px")
+		.css("background-color", g.COLORCONSTANTS.BLUE)
+		.appendTo("body");
+
+	$("#control-info-main-div td").css("height", "20px");
+
+
+
+	//Add tutorial message container (for later)
 	var tM = document.createElement('div');
 	document.body.appendChild(tM);
 	tM.style.width = this.canvasStyle.width + 40 + 'px';

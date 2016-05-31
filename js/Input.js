@@ -117,9 +117,11 @@ Input.prototype.keyDown = function(e)
 				}
 				break;
 			//Space
+			/*
 			case 32:
 				g.game.playerWait();
 				break;
+			*/
 			//Period
 			case 190:
 				if (e.shiftKey)
