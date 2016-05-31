@@ -2439,27 +2439,27 @@ View.prototype.initializeGameView = function(){
 	controlInfo.innerHTML = `
 		<table>
 			<tr>
-				<td>Arrow Keys: Move</td>
-				<td>Alt + Arrow Keys: Turn (.5 x move time / 90&deg;)</td>
+				<td><span class='controlKey'>Arrow Keys</span>: Move</td>
+				<td><span class='controlKey'>Alt + Arrow Keys</span>: Turn (.5 x move time / 90&deg;)</td>
 			</tr>
 			<tr>
-				<td>Shift + Arrow Keys: Move without turning (2x move time)</td>
-				<td>a: Aim, attack(while aiming)</td>
+				<td><span class='controlKey'>Shift + Arrow Keys</span>: Move without turning (2x move time)</td>
+				<td><span class='controlKey'>a</span>: Aim, attack(while aiming)</td>
 			</tr>
 			<tr>
-				<td>d: Toggle display directions</td>
-				<td>x: Toggle examine mode</td>
+				<td><span class='controlKey'>d</span>: Toggle display directions</td>
+				<td><span class='controlKey'>x</span>: Toggle examine mode</td>
 			</tr>
 			<tr>
-				<td>m: Open Character Menu</td>
-				<td>esc: Open Main Menu</td>
+				<td><span class='controlKey'>m</span>: Open Character Menu</td>
+				<td><span class='controlKey'>esc</span>: Open Main Menu</td>
 			</tr>
 			<tr>
-				<td>.: Wait one tick</td>
-				<td>Shift + .: Rest</td>
+				<td><span class='controlKey'>.</span>: Wait one tick</td>
+				<td><span class='controlKey'>Shift + .</span>: Rest</td>
 			</tr>
 			<tr>
-				<td>Tab: Toggle Move Mode</td>
+				<td><span class='controlKey'>Tab</span>: Toggle Move Mode</td>
 			</tr>
 		<table>
 	`;
@@ -2467,13 +2467,16 @@ View.prototype.initializeGameView = function(){
 		.css("position", "absolute")
 		.css("border", "3px solid black")
 		.css("width", this.canvasStyle.width + "px")
-		.css("height", "150px")
+		.css("height", "160px")
 		.css("left", "250px")
-		.css("top", "560px")
+		.css("top", "555px")
 		.css("background-color", g.COLORCONSTANTS.BLUE)
 		.appendTo("body");
 
-	$("#control-info-main-div td").css("height", "20px");
+	$("#control-info-main-div td").css("height", "26px")
+		//.css("border", "1px solid " + g.COLORCONSTANTS.LIGHTGRAY)
+		.css("font-size", "8pt")
+		.css("padding", "1px");
 
 
 
