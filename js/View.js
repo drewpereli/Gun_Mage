@@ -2474,7 +2474,6 @@ View.prototype.initializeGameView = function(){
 		.appendTo("body");
 
 	$("#control-info-main-div td").css("height", "26px")
-		//.css("border", "1px solid " + g.COLORCONSTANTS.LIGHTGRAY)
 		.css("font-size", "8pt")
 		.css("padding", "1px");
 
