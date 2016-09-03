@@ -38,8 +38,9 @@ function View(width, height){
 
 	this.canvases = {
 		terrain: document.createElement('canvas'),
-		items: document.createElement('canvas'),
-		units: document.createElement('canvas'),
+		//items: document.createElement('canvas'),
+		//units: document.createElement('canvas'),
+		objects: document.createElement('canvas'),
 		lighting: document.createElement('canvas'),
 		stealth: document.createElement('canvas'),
 		vision: document.createElement('canvas'),
@@ -564,12 +565,7 @@ View.prototype.setCell = function(cell)
 
 
 
-		//Items
-		if (tile.item){
-			var item = tile.item;
-			var character = g.chars[item.type];
-			cell.fillText(character, g.colors.items, 'items');
-		}
+		
 
 
 
@@ -589,7 +585,7 @@ View.prototype.setCell = function(cell)
 					character = g.chars.PLAYER;
 				}
 				color = g.colors.PLAYER;
-				cell.fillText(character, color, 'units');
+				cell.fillText(character, color, 'objects');
 			}
 			else 
 			{
@@ -612,9 +608,14 @@ View.prototype.setCell = function(cell)
 					{
 						color = g.colors[unit.behavior];
 					}
-					cell.fillText(character, color, 'units');
+					cell.fillText(character, color, 'objects');
 				}
 			}
+		}
+		else if (tile.item){
+			var item = tile.item;
+			var character = g.chars[item.type];
+			cell.fillText(character, g.colors.items, 'objects');
 		}
 
 
@@ -2364,7 +2365,7 @@ View.prototype.initializeGameView = function(){
 		{
 			canvas.style.opacity = .5;
 		}
-		else if (canvasName === 'units')
+		else if (canvasName === 'units' || canvasName === 'objects')
 		{	
 			ctx.font = '900 ' + g.fontSize + 'pt ' + g.fontFamily;
 		}
