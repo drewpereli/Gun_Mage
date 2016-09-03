@@ -1,4 +1,6 @@
+
 //This is i nmaster. is it in gh-pages too?
+
 function Game(){
 
 	this.level;
