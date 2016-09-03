@@ -120,6 +120,10 @@ Cell.prototype.fullClear = function()
 {
 	for (var name in this.ctxs)
 	{
+		if (name === "terrain")
+		{
+			continue; //Don't clear the terrain canvas. WE're going to try just moving that around instead of fully clearing it unless we have to
+		}
 		this.clearRect(name);
 	}
 }

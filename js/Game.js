@@ -1602,7 +1602,7 @@ Game.prototype.playerDescend = function()
 		}
 		this.transportUnit(this.player, this.level.spawnTile);
 	}
-	
+	g.view.initialieNewLevel();
 }
 
 
@@ -1643,9 +1643,6 @@ Game.prototype.generateNewLevel = function()
 	}
 	this.level = new Level(width, height, this.depth);
 	this.level.initialize();
-
-	g.view.setDepth();
-	g.view.setOrb(false);
 }
 
 
@@ -1725,5 +1722,6 @@ Game.prototype.initialize = function()
 		this.generateNewLevel();
 	}
 	this.spawnUnit(this.player, this.level.spawnTile);
+	g.view.initializeNewLevel();
 }
 
