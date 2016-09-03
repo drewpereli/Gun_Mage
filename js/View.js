@@ -2178,7 +2178,8 @@ View.prototype.initializeMainMenu = function()
 	document.body.appendChild(mainMenu);
 	//mainMenu.style.backgroundColor = 'black';
 	mainMenu.style.position = 'absolute';
-	mainMenu.style.width = menuWidth + 'px';
+	//mainMenu.style.width = menuWidth + 'px';
+	mainMenu.style.width = "100%";
 	mainMenu.style.height = '600px';
 	mainMenu.style.textAlign = 'center';
 	//Print the title
@@ -2188,12 +2189,23 @@ View.prototype.initializeMainMenu = function()
 	title.style.color = 'gold';
 	title.style.fontSize = '50pt';
 	title.style.color = g.COLORCONSTANTS.WHITE;
-	title.style.width = menuWidth + 'px';
+	//title.style.width = menuWidth + 'px';
+	title.style.width = "100%";
 	title.style.textAlign = 'center';
 	title.style.marginBottom = '200px';
 	//title.style.position = 'absolute';
 	//title.style.left = '300px';
 	mainMenu.appendChild(title);
+
+	var instructions = document.createElement('h3');
+	instructions.innerHTML = "Use the arrow keys to make a selection";
+	instructions.style.color = 'gold';
+	instructions.style.fontSize = '20pt';
+	instructions.style.color = g.COLORCONSTANTS.WHITE;
+	instructions.style.width = "100%";
+	instructions.style.textAlign = 'center';
+	instructions.style.marginBottom = '50px';
+	mainMenu.appendChild(instructions);
 
 	for (var name in this.mainMenuContainers)
 	{
