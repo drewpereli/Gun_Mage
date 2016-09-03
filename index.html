@@ -1,6 +1,161 @@
-
 <html>
+<head>
+	<meta charset="utf-8">
+	<style>
+		body {
+			background-color: #555555;
+			font-family: monospace;
+		}
+
+		table{
+			border-spacing: 0px;
+			border-collapse: collapse;
+		}
+
+		#characterInfo div {
+			margin-left: 30px;
+			margin-top: 4px;
+		}
+
+		#equipmentInfoWindow{
+			padding: 1px;
+		}
+
+		#equipmentInfoWindow div{
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+
+		.powerMessage
+		{
+			color: purple;
+		}
+
+		h4, h1
+		{
+			text-align: center;
+		}
+
+		h4
+		{
+			font-size: 11pt;
+			margin: 0px;
+		}
+
+		.menuArmorDiv div
+		{
+			margin: 7px;
+		}
+
+		.armorMenuNameDiv
+		{
+			text-align: center;
+			font-size: 14pt;
+			font-weight: bold;
+		}
+
+		.powerSmall {
+			font-size: 90%;
+		}
+
+		.controlKey
+		{
+			background-color: gray;
+			border: 1px solid black;
+			padding: 1px;
+		}
+
+		.overlay{
+			background-color: rgba(0,0,0,0.5);
+			position: fixed;
+			height: 100%;
+			width: 100%;
+			top: 0;
+			left: 0;
+			z-index: 2;
+		}
+		.dialog{
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+			margin: 0 auto;
+			height: 200px;
+			width: 500px;
+			background-color:#333;
+			border: solid #664;
+			border-radius: 15px;
+			padding: 50px;
+			text-align: center;
+			color: #DDD;
+			font-size: 20px;
+		}
+		.dialog-msg{
+			height: 75%;
+		}
+		.dialog-btns{
+			width: 100%;
+			height: 25%;
+		}
+
+		.dialog-btn{
+	        display: inline-block;
+	        border: solid #555 2px;
+	        border-radius: 5px;
+	        margin: 5px;
+	        padding: 5px;
+	        width: 90px;
+	    }
+	    .dialog .confirm{
+	        background-color: #2A2;
+	    }
+	    .dialog .deny{
+	        background-color: #A22;
+	    }
+
+
+
+	</style>
+	
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="js/GlobalVariables.js"></script>
+	<script src="js/CalculationFunctions.js"></script>
+	<script src="js/GeneralFunctions.js"></script>
+	<script src="js/Game.js">     </script>
+	<script src="js/View.js"></script>
+	<script src="js/Tile.js"></script>
+	<script src="js/Cell.js"></script>
+	<script src="js/Input.js"></script>
+	<script src="js/Level.js"></script>
+	<script src="js/Power.js"></script>
+	<script src="js/Unit.js"></script>
+	<script src="js/Player.js"></script>
+	<script src="js/Enemy.js"></script>
+	<script src="js/Random.js"></script>
+	<script src="js/Item.js"></script>
+	<script src="js/Gun.js"></script>
+	<script src="js/MeleeWeapon.js"></script>
+	<script src="js/Helmet.js"></script>
+	<script src="js/Armor.js"></script>
+	<script src="js/EnemyObjects.js"></script>
+	<script src="js/Sound.js"></script>
+</head>
 <body>
-Hello World
+
+
+
+	<!--<div id="overlay_container" class="overlay">
+		<div class="dialog">
+			<div class="dialog-msg">
+                Here is a question?
+            </div>
+            <div class="dialog-btns">
+                <span class="confirm dialog-btn">YES</span>
+                <span class="deny dialog-btn">NO</span>
+            </div>
+		</div>
+	</div>-->
 </body>
+<script>
+		g.initialize();
+</script>
 </html>
