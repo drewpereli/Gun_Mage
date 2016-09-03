@@ -248,14 +248,38 @@ function GlobalVariables(){
 
 
 	this.powers = {};
+	this.sounds = {
+		weapons: {
 
+		},
+		player: {
+			footsteps: [],
+		},
+		enemies: {
+
+		}
+	}
 
 	this.levelCompositions; //Created in initialize
 	
 
 
-
 }
+
+
+
+
+
+
+GlobalVariables.prototype.initializeSounds = function()
+{
+	for (var i = 1 ; i <= 10 ; i++)
+	{
+		this.sounds.player.footsteps.push(new Sound("sounds/footsteps/Footstep" + i + ".mp3"));
+	}
+}
+
+
 
 
 GlobalVariables.prototype.initialize = function()
@@ -267,7 +291,7 @@ GlobalVariables.prototype.initialize = function()
 	}
 
 
-	
+	this.initializeSounds();
 	/*
 	var sound = document.createElement("audio");
 	sound.innerHTML = "<source src='sounds/PISTOL_SHOT.mp3' type='audio/mpeg' />";

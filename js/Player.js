@@ -123,6 +123,19 @@ Player.prototype.move = function(directionIndex)
 		g.game.displayTutorialMessage(this.tile.message);
 	}
 
+	//Do audio stuff
+	
+	var soundIndex;
+	do
+	{
+		soundIndex = g.rand.nextInt(0, 10);
+	}
+	while (soundIndex === g.game.lastFootstepSoundPlayed)
+	g.game.lastFootstepSoundPlayed = soundIndex;
+	var sound = g.sounds.player.footsteps[soundIndex];
+	sound.play();
+	
+
 	return timeTaken;
 }
 

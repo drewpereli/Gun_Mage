@@ -37,7 +37,10 @@ function Game(){
 	this.madeNoiseThisTick = []//All the tiles that made noise this tick. After the tick, the tick function will set them to 0 and clear the array.
 	this.messageLogged = false;
 
+	this.lastFootstepSoundPlayed = -1; //Index of the last footstep sound to play when taking a step. Used to prevent the same sound from playing twice in a row
+
 	this.inTutorial = false;
+
 	
 	this.DEBUG = {
 		allTilesVisible: false, //Can see every tile
