@@ -2184,7 +2184,7 @@ View.prototype.initializeMainMenu = function()
 	mainMenu.style.textAlign = 'center';
 	//Print the title
 	var title = document.createElement('h1');
-	title.innerHTML = "GUNMAGES";
+	title.innerHTML = "GUNMAGE";
 	//title.innerHTML = title.innerHTML.replace("GAME", "<strike>GAME</strike>") + " CENSORSHIP!";
 	title.style.color = 'gold';
 	title.style.fontSize = '50pt';
