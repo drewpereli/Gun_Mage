@@ -1156,6 +1156,7 @@ Game.prototype.playerCollectOrb = function()
 	g.view.setPowerPoints();
 	orbTile.setTerrain("OPEN");
 	g.view.setOrb(true);
+	g.view.setTerrain(orbTile);
 }
 
 
@@ -1505,6 +1506,7 @@ Game.prototype.processAttack = function(attacker, targetTile)
 			if (g.rand.next(0, 50) < dam)
 			{
 				targetTile.setTerrain('OPEN');
+				g.view.setTerrain(targetTile);
 			}
 		}
 		else if (targetTile.terrain === 'OPEN' && targetTile.elevation === 1)
@@ -1602,7 +1604,7 @@ Game.prototype.playerDescend = function()
 		}
 		this.transportUnit(this.player, this.level.spawnTile);
 	}
-	
+	g.view.initializeNewLevel();
 }
 
 
@@ -1643,9 +1645,6 @@ Game.prototype.generateNewLevel = function()
 	}
 	this.level = new Level(width, height, this.depth);
 	this.level.initialize();
-
-	g.view.setDepth();
-	g.view.setOrb(false);
 }
 
 
@@ -1725,5 +1724,6 @@ Game.prototype.initialize = function()
 		this.generateNewLevel();
 	}
 	this.spawnUnit(this.player, this.level.spawnTile);
+	g.view.initializeNewLevel();
 }
 
