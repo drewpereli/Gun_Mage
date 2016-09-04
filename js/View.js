@@ -2078,9 +2078,15 @@ View.prototype.centerOn = function(x, y){
 	this.viewX = newX;
 	this.viewY = newY;
 	//Move the terrain canvas
+	this.centerTerrainCanvas(x, y);
+}
+
+
+View.prototype.centerTerrainCanvas = function(x, y)
+{
 	var canvas = this.canvases.terrain;
-	canvas.style.top = 0 - g.game.player.tile.y * this.cellLength + (this.heightInCells * this.cellLength / 2) + "px";
-	canvas.style.left = 0 - g.game.player.tile.x * this.cellLength + ((this.widthInCells + 1) * this.cellLength / 2) + "px";
+	canvas.style.top = 0 - y * this.cellLength + (this.heightInCells * this.cellLength / 2) + "px";
+	canvas.style.left = 0 - x * this.cellLength + ((this.widthInCells + 1) * this.cellLength / 2) + "px";
 }
 
 
@@ -2165,6 +2171,98 @@ View.prototype.expandTerrainCanvas = function()
 	
 }
 
+View.prototype.setTerrain = function(tile)
+{
+	var canvas = this.canvases.terrain;
+	var ctx = canvas.getContext("2d");
+	var cL = this.cellLength;
+	var xPx = tile.x * this.cellLength;
+	var yPx = tile.y * this.cellLength;
+	var terrain = tile.terrain;
+	var p = g.game.player;
+	var color;
+	var character;
+	if (terrain === 'OPEN')
+	{
+		color = tile.elevation === 1 ? g.colors.OPEN : g.colors.PIT;
+	
+		if (tile.unit || tile.item)
+		{
+			character = '';
+		}
+		else
+		{
+			character = tile.elevation === 1 ? g.chars.OPEN : g.chars.PIT;
+		}
+		ctx.fillStyle = color;
+		ctx.fillRect(xPx, yPx, this.cellLength, this.cellLength);
+		color = g.colors.border;
+		ctx.fillStyle = color;
+		ctx.strokeRect(xPx + 1, yPx+ 1, this.cellLength - 2, this.cellLength - 2);
+		color = g.COLORCONSTANTS.DARKGRAY;
+		ctx.fillStyle = color;
+		ctx.fillText(character, xPx + Math.round(cL / 2), yPx + Math.round(cL / 2));
+	}
+	else if (terrain === 'WALL')
+	{
+		if (tile.destructable)
+		{
+			color = g.colors.WALL;
+		}
+		else
+		{
+			color = g.colors.INDESTRUCTABLE;
+		}
+		ctx.fillStyle = color;
+		ctx.fillRect(xPx, yPx, this.cellLength, this.cellLength);
+		ctx.fillStyle = color;
+		ctx.strokeRect(xPx + 1, yPx + 1, this.cellLength - 2, this.cellLength - 2);
+		color = g.colors.defaultColor;
+		character = g.chars.WALL;
+		ctx.fillStyle = color;
+		ctx.fillText(character, xPx + Math.round(cL / 2), yPx + Math.round(cL / 2));
+
+	}
+	else if (terrain === 'STAIRSDOWN')
+	{
+		color = g.colors.STAIRSDOWN;
+		ctx.fillStyle = color;
+		ctx.fillRect(xPx, yPx, this.cellLength, this.cellLength);
+		color = g.colors.border;
+		ctx.fillStyle = color;
+		ctx.strokeRect(xPx + 1, yPx + 1, this.cellLength - 2, this.cellLength - 2);
+		color = g.colors.defaultColor;
+		character = g.chars.STAIRSDOWN;
+		ctx.fillStyle = color;
+		ctx.fillText(character, xPx + Math.round(cL / 2), yPx + Math.round(cL / 2));
+	}
+	else if (terrain === 'ORB')
+	{
+		color = g.colors.OPEN;
+		ctx.fillStyle = color;
+		ctx.fillRect(xPx, yPx, this.cellLength, this.cellLength);
+		ctx.fillStyle = color;
+		ctx.strokeRect(xPx + 1, yPx + 1, this.cellLength - 2, this.cellLength - 2);
+		color = g.colors.ORB;
+		character = g.chars.ORB;
+		ctx.fillStyle = color;
+		ctx.fillText(character, xPx + Math.round(cL / 2), yPx + Math.round(cL / 2));
+	}
+	/*
+	else if (terrain === 'LAVA')
+	{
+		if (p.canSee(tile))
+		{
+			cell.fillLava();
+		}
+		else
+		{
+			cell.fillLavaLastSeen();
+		}
+	}
+	*/
+}
+
 
 
 View.prototype.fillTerrainCanvas = function()
@@ -2178,6 +2276,8 @@ View.prototype.fillTerrainCanvas = function()
 		for (var y = 0 ; y < g.game.level.height ; y++)
 		{
 			var tile = g.game.level.getTile(x, y);
+			this.setTerrain(tile);
+			/*
 			var cL = this.cellLength;
 			var xPx = tile.x * this.cellLength;
 			var yPx = tile.y * this.cellLength;
@@ -2251,6 +2351,7 @@ View.prototype.fillTerrainCanvas = function()
 				ctx.fillStyle = color;
 				ctx.fillText(character, xPx + Math.round(cL / 2), yPx + Math.round(cL / 2));
 			}
+			*/
 			/*
 			else if (terrain === 'LAVA')
 			{
