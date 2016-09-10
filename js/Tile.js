@@ -182,7 +182,7 @@ Tile.prototype.setMessage = function(message)
 
 Tile.prototype.setElevation = function(el)
 {
-	this.elevation = el;
+	//this.elevation = el;
 }
 
 
