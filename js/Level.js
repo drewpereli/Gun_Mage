@@ -728,6 +728,7 @@ Level.prototype.generate = function()
 
 
 	//Place some pits using CA
+	/*
 	var startingPits = 20 + this.currentDepth;
 
 	for (var i = 0 ; i < startingPits ; i++)
@@ -783,7 +784,7 @@ Level.prototype.generate = function()
 			}
 		}
 	}
-
+	*/
 
 	return true;
 
