@@ -248,10 +248,21 @@ Game.prototype.changeState = function(state)
 }
 
 
-Game.prototype.movePlayer = function(direction)
+
+Game.prototype.turnOrMovePlayer = function(directionString)
 {
-	var moveIndex = this.directionStringToIndex(direction);
-	var timeTaken = this.player.move(moveIndex);
+	var direction = this.directionStringToIndex(directionString);
+	if (direction === this.player.direction)
+		this.movePlayer(direction);
+	else
+		this.turnPlayer(direction);
+}
+
+
+
+Game.prototype.movePlayer = function(directionIndex)
+{
+	var timeTaken = this.player.move(directionIndex);
 	if (timeTaken !== 0)
 	{
 		this.tick(timeTaken);
@@ -260,13 +271,9 @@ Game.prototype.movePlayer = function(direction)
 }
 
 
-Game.prototype.turnPlayer = function(direction)
+Game.prototype.turnPlayer = function(directionIndex)
 {
-	var dIndex = this.directionStringToIndex(direction);
-	if (dIndex === this.player.direction){
-		return;
-	}
-	var timeTaken = this.player.turn(dIndex, true);
+	var timeTaken = this.player.turn(directionIndex, true);
 	this.tick(timeTaken);
 	g.view.setCharacterMainDiv();
 }

@@ -66,54 +66,42 @@ Input.prototype.keyDown = function(e)
 		switch (code){
 			//Left arrow
 			case 37:
-				if (e.altKey){
-					g.game.turnPlayer("LEFT", true);
-				}
-				else if (e.shiftKey)
+				if (e.shiftKey)
 				{
 					g.game.shiftPlayer("LEFT");
 				}
 				else{
-					g.game.movePlayer("LEFT");
+					g.game.turnOrMovePlayer("LEFT");
 				}
 				break;
 			//Right arrow
 			case 39:
-				if (e.altKey){
-					g.game.turnPlayer("RIGHT", true);
-				}
-				else if (e.shiftKey)
+				if (e.shiftKey)
 				{
 					g.game.shiftPlayer("RIGHT");
 				}
 				else{
-					g.game.movePlayer("RIGHT");
+					g.game.turnOrMovePlayer("RIGHT");
 				}
 				break;
 			//Up arrow
 			case 38:
-				if (e.altKey){
-					g.game.turnPlayer("UP", true);
-				}
-				else if (e.shiftKey)
+				if (e.shiftKey)
 				{
 					g.game.shiftPlayer("UP");
 				}
 				else{
-					g.game.movePlayer("UP");
+					g.game.turnOrMovePlayer("UP");
 				}
 				break;
 			//Down arrow
 			case 40:
-				if (e.altKey){
-					g.game.turnPlayer("DOWN", true);
-				}
-				else if (e.shiftKey)
+				if (e.shiftKey)
 				{
 					g.game.shiftPlayer("DOWN");
 				}
 				else{
-					g.game.movePlayer("DOWN");
+					g.game.turnOrMovePlayer("DOWN");
 				}
 				break;
 			//Space

@@ -7,22 +7,23 @@ TO DO
 -- Implement armor and helmets. DONE!
 
 
--- Implement spread on weapons.
+-- Implement spread on weapons. DONE!
 
 
--- Implement knockback on weapons
+-- Implement knockback on weapons DONE!
 
 
--- Implement powers
+-- Implement powers DONE!
 
 
 -- Implement all other enemies
 
 
--- Implement stairs up and down so new dungeons become generated
+-- Implement stairs up and down so new dungeons become generated DONE! (you can only go down though)
 
 
 -- Add div to display the controls
+	--Add "v" for "show visibility range"
 
 
 -- Add classes and races
