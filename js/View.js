@@ -572,7 +572,7 @@ View.prototype.setCell = function(cell)
 
 
 
-
+		//objects
 		if (tile.unit)
 		{
 			var unit = tile.unit;
